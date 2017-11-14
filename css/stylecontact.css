@@ -1,0 +1,79 @@
+body {overflow: hidden;}
+.data {
+	display: block;
+	margin: 2% auto;
+	width: 45%
+
+}
+
+.dataValue {
+	width: 40%;
+	display: inline-block;
+	float: left;
+	margin-left: 7.5%;
+	margin-top: 5px;
+}
+.dataValue a {text-decoration: none; color: inherit;}
+.dataList {margin: 5% 0}
+.form{
+	float: left;
+	width: 80%;
+	margin: 5% 10%;
+}
+.mail {
+	border: none;
+	border-bottom: 2px solid black;
+	font-size: 16pt;
+	width: 100%;
+	padding-left: 5%;
+}
+.form *::placeholder{
+	color: #0093cb99;
+}
+
+.form *:focus{
+	background-color: #0093cb11; 
+}
+
+.form textarea{
+	width: 100%;
+	border: none;
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	height: 190.28px;
+	margin-top: 6%;
+	font-size: 12pt;
+	padding-left: 5%;
+}
+svg, img{
+	width: 15%;
+	float: left;
+}
+input[type="submit"] {
+	display: block;
+	margin: 20% auto 0 auto;
+}
+.clear{clear: both; margin: 2% 0}
+@media screen and (min-width:480px){
+	.dataValue {
+		margin-top: 2px;
+		font-size: 16pt;
+	}
+	svg, {width: 10%;}
+}
+
+@media screen and (min-width:600px){
+	.data {margin-top: 5%; width: 30%; margin-left: 35%;}
+	.form{
+		width: 40%;
+		margin-left: 30%;
+	}
+	.mail {
+		border-bottom: 5px solid black;
+	}
+	.form textarea {
+			border-left: 5px solid black;
+			border-top: 5px solid black;
+			padding-top: 5%;
+	}
+}

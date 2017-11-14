@@ -1,0 +1,155 @@
+img {width: 100%;}
+body {margin: 0;padding: 0;overflow: hidden; background-color: #b55286; user-select: none;}
+
+#controlMenu{
+	height: 150px;	
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+}
+#controlBar{
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+}
+
+
+#buscador{
+	display: inline-block;
+}
+#setting{
+	display: inline-block;
+	width: 5%;
+	float: right;
+}
+.setting{fill:none;stroke:#CCCCC0;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;}
+
+#menu {
+	width: 18%;
+	background-color: rgb(217,194,194);
+	height: 100%;
+	float: right;	
+	margin-bottom: 40px;
+	position: absolute;
+	right: 1%;
+	bottom: 0px;
+	padding-left: 2%;
+}
+.controlador {
+	height: 70%;
+	width: 1.5%;
+	background-color: #1155ce;
+	float: left;
+	border-radius: 18%;
+	
+}
+
+.controlador:nth-child(2n+1) {
+	margin: 11% 5%;
+	margin-bottom: 0;
+
+}
+.controlador:nth-child(2n) {
+	margin: 11% 10% 0 0;
+	
+}
+
+.pointer {
+	width: 300%;
+	height: 8px;
+	background-color: gray;
+	margin-left: -82%;
+
+}
+
+#menu span {
+	margin-left: 7%;
+	margin-right: 11%;
+}
+
+.fill {
+	width: 40%;
+	height: 10px;
+	background-color: #d8d8d8;
+	position: absolute;
+	top: 50px;
+	left: 100px;
+	border-radius: 25px 25px 0 0;
+	box-shadow: 5px 5px 5px black;
+}
+
+.fill .header {
+	float: left;
+	width: 100%;
+	background-color: #493519;
+	height: 25px;
+	border-radius: 15px 15px 0 0;
+	text-align: center;
+	color: #d8d8d8;
+}
+
+.buttom {
+	width: 15px;
+	height: 15px;
+	float: right;
+	margin: 5px;
+	background-color: #d8d8d8;
+	border-radius: 50px;
+	cursor: default;
+}
+.close:hover {
+	background-color: red;
+}
+.minify:hover{
+	background-color: orange;
+}
+
+.maximizy:hover {
+	background-color: green;
+}
+
+
+.paper {
+	float: left;
+	margin: 2% 20%;
+	background-color: white;
+	padding-left: 1%;
+	width: 60%;
+	padding: 0;
+	box-shadow: 5px 10px 15px black;
+}
+
+
+.scroll{
+	position: absolute;
+	right: 0px;
+	top:25px;
+	background-color: #aaa;
+	width: 10px;
+	height: 30px;
+	border-radius: 30%;
+
+}
+.myImg{
+	margin:0 auto;
+	box-shadow: 5px 10px 15px black;	
+}
+
+#screenBlue {
+	width: 95%;
+	background-color: rgba(33, 198, 181, 0.35);
+	position: absolute;
+	top: 0;
+	left: 2.5%;
+}
+
+iframe {
+	border: none;
+	padding: 0;
+}
+
+.fill .header, [move='true'] {
+	cursor: url('../media/img/system/openHand.png'), auto;
+}

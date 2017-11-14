@@ -1,0 +1,300 @@
+/*Abautme*/
+
+img {width:100%; margin:0;}
+
+@font-face {
+	font-family: 'universNormal';
+	src: url('../fonts/UniversLTStd.eot');
+	src: local('☺'), url('../fonts/universNormal/UniversLTStd.woff') format('woff'), url('../fonts/universNormal/UniversLTStd.ttf') format('truetype'), url('../fonts/universNormal/UniversLTStd.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+:root {
+	--main-bg-color: #f5f5f5;
+	--main-font: 'universNormal';
+	--main-scndColor: #3971b7;
+}
+
+body {margin: 0; background-color: var(--main-bg-color); overflow: hidden}
+.clear {clear: both; display: block;}
+
+
+#profilePhoto {
+	width: 20%;
+}
+header {
+	background-color: var(--main-scndColor);
+	color: var(--main-bg-color);
+	float: left;
+	width: 100%;
+}
+
+header * {
+	float: left;
+	display: inline-block;
+	
+}
+
+header .header{
+	float: left;
+	width: 50%;
+	margin: 2% 15%;
+	margin-bottom: 0%;
+	font-family: var(--main-font);
+	font-size: 7pt;
+	text-align: justify;
+}
+
+.header p {
+	margin-bottom: 1.5%;
+
+}
+
+h1 {
+	float: left;
+	font-family: var(--main-font);
+	width: 30%;
+	font-size: 9pt;
+	margin: 2% 3%;
+}
+
+h2 {
+	font-size:8pt;
+}
+
+aside {
+	float: left;
+	//width: 40%;
+	margin: 2% 3%;
+	font-size: 8pt;
+	font-family: var(--main-font);
+}
+aside li {
+	display: block;
+	margin-bottom: 2%;
+}
+.texto {
+	float: left;
+	display: block;
+	width: 90%;
+	margin: 0 5%;
+}
+
+.texto article {
+	font-family: var(--main-font);
+	width: 100%;
+	text-align: center;
+	font-size: 6pt;
+}
+
+.texto article h2 {
+	background-color: #f08300;
+	
+}
+
+.texto article p {
+	text-align: justify;
+
+}
+#complementaria .intro {
+	width: 50%;
+	margin: 0 auto;
+	text-align: justify;
+}
+
+
+svg {display: none;}
+
+polygon {
+	fill: #f08300;
+}
+#complementaria h3 {
+	/*text-align: left;*/
+	float: left;
+	display: block;
+	width:100%;
+}
+.skills {width:24.8%;}
+.skills li {margin:0;}
+
+.barraName {
+	text-align:left;
+
+
+}
+.barra {
+	margin:1% 2%;
+	width: 65.2%;
+	float:left;
+	
+}
+.barras {
+	height: 7pt;
+	background-color: var(--main-scndColor);
+	display: block;
+	width:100%;
+	margin: 3.5pt 0;
+}
+
+#html {width: 70%;}
+
+#css {width: 60%;}
+
+#js {width: 80%;}
+
+#php {width: 60%;}
+
+#msql {width: 70%;}
+
+#py {width: 80%;}
+
+#as3 {width: 50%;}
+
+#nodejs{width: 10%;}
+
+#ionic{width: 20%;}
+
+#psd {width: 75%;}
+
+#ai {width: 65%;}
+
+#ind {width: 55%;}
+
+#pre {width: 25%;}
+
+#fla {width: 75%;}
+
+#after {width: 30%;}
+
+#tresD {width: 50%;}
+
+@media screen and (min-width:480px){
+	header .header{
+		width: 50%;
+		margin: 3% 15%;
+		margin-bottom: 0%;
+		font-size: 9pt;
+	}
+
+	h1 {
+		font-size:11pt;
+	}	
+	
+	aside {
+		font-size:9pt;
+	}
+	
+	h2 {
+		font-size:10pt;
+	}
+	.texto article {
+		font-size: 8pt;
+		width:40%;
+		float:left;
+		margin: 2%;
+	}
+	.barra {
+		margin: 1% 2%;
+	}
+	.barras {
+		height:7pt;
+	}
+	.texto article:nth-child(even) {
+		float:right;
+	}
+	svg {
+		display: inline-block;
+		float:left;
+		width:120%;
+		margin-left:-10%;
+	}
+	#especializacion{
+		display: block;
+		width: 100%;
+		margin-top:-6%;
+	}
+	#especializacion .wrapp{
+		width:40%;
+		float:left;
+		margin: 0 5%;
+	}
+	#especializacion aside {
+		font-size:9pt;
+	}
+	#especializacion h2 {
+		background-color: initial;
+	}
+	.skills {
+		width:47.2%;
+	}
+	.barra {
+		width:42.8%
+	}
+	.barras {
+		height:7pt;
+	}
+	.intro {
+		font-size:9pt;
+		width:50%;
+		margin: auto;
+	}
+
+}
+@media screen and (min-width:600px){
+	#especializacion{
+		margin-top:-5.5%;
+	}
+}
+@media screen and (min-width:800px){
+	#especializacion{
+		margin-top:-4%;
+	}
+}/*
+@media screen and (min-width:600px){
+	#especializacion{
+		margin-top:-5.5%;
+	}
+}*/
+
+
+
+
+@media screen and (min-width:960px){
+	header .header{
+		width: 50%;
+		margin: 9% 15%;
+		margin-bottom: 0%;
+		font-size: 14pt;
+	}
+
+	h1{
+		font-size:20pt;	
+	}
+
+	aside {
+		font-size: 13pt;
+	}
+	h2 {
+		font-size:15pt;
+
+	}
+	.texto article p{
+		font-size:11pt;
+	}
+	#especializacion {margin-top:-4%;}
+
+}
+
+@media screen and (min-width:1100px){
+	#especializacion{
+		margin-top:-4%;
+	}
+}
+
+
+
+
+

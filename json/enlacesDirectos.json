@@ -1,0 +1,28 @@
+{
+	"trabajos" : {
+		"txt":  "Works",
+		"r": 5,
+		"color": "#b7e2af",
+		"speed": 80
+	},
+
+	"contacto" : {
+		"txt":  "Contact me",
+		"r": 3,
+		"color": "#b7e2af",
+		"speed": 60
+
+	},
+	"app" : {
+		"txt":  "Apps",
+		"r": 2,
+		"color": "#b7e2af",
+		"speed": 40
+	},
+	"sobremi" : {
+		"txt":  "About me",
+		"r": 80,
+		"color": "#b7e2af",
+		"speed": 36
+	}
+}

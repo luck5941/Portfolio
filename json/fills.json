@@ -1,0 +1,64 @@
+{
+	"sobremi": {
+		"visualizador": "'word'",
+		"contenido": "'abautMe.html'",
+		"id": "'sobremi'"
+		
+	},
+
+	"contacto": {
+		"visualizador": "'word'",
+		"contenido": "'contactme.html'",
+		"id": "'contacto'"
+	},
+
+	"media":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'media'"
+	},
+ 
+	"packaging":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'packaging'"
+	},
+	"posters":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'posters'"
+	},
+ 
+	"retoque":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'retoque'"
+	},
+	"tresD":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'tresD'"
+	},
+ 
+	"arquitectura":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'arquitectura'"
+	},
+	"otros":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'otros'"
+	},
+ 
+	"vidreoMetal":{
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'vidreoMetal'"
+	},
+	"retratos": {
+		"visualizador": "'nautilus'",
+		"contenido": "'img.json'",
+		"id": "'retratos'"
+	}
+}

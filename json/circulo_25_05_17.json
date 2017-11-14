@@ -1,0 +1,141 @@
+{
+	"desktop": {
+		"trabajos" : {
+			"cx": "w/2",
+			"cy": "h/2",
+			"r": 5,
+			"color": "'#a9ffe0'",
+			"id": "'trabajos'",
+			"txt":  "'Works'",
+
+			"tresD" : {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 2,
+				"color": "'#a9ffe0'",
+				"id": "'tresD'",
+				"txt":  "'3D'",
+				"end": "true"
+			},
+
+			"fotografia": {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 4,
+				"color": "'#a9ffe0'",
+				"id": "'fotografia'",
+				"txt":  "'Fotografía'",
+
+
+				"arquitectura": {
+					"cx": "w/2",
+					"cy": "h/2",
+					"r": 3,
+					"color": "'#a9ffe0'",
+					"id": "'arquitectura'",
+					"txt":  "'Arquitectura'",
+					"end": "true"
+				},
+
+				"otros": {
+					"cx": "w/2",
+					"cy": "h/2",
+					"r": 2,
+					"color": "'#a9ffe0'",
+					"id": "'otros'",
+					"txt":  "'Otros'",
+					"end": "true"
+				},
+
+				"retratos": {
+					"cx": "w/2",
+					"cy": "h/2",
+					"r": 5,
+					"color": "'#a9ffe0'",
+					"id": "'retratos'",
+					"txt":  "'Retratos'",
+					"end": "true"
+				},
+
+				"vidreoMetal": {
+					"cx": "w/2",
+					"cy": "h/2",
+					"r": 3,
+					"color": "'#a9ffe0'",
+					"id": "'vidreoMetal'",
+					"txt":  "'vidreo/metal'",
+					"end": "true"
+				}
+			},			
+
+			"media": {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 2,
+				"color": "'#a9ffe0'",
+				"id": "'media'",
+				"txt":  "'Media'",
+				"end": "true"
+			},
+
+			"packaging": {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 2,
+				"color": "'#a9ffe0'",
+				"id": "'packaging'",
+				"txt":  "'Packaging'",
+				"end": "true"
+			},
+
+			"posters": {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 3,
+				"color": "'#a9ffe0'",
+				"id": "'posters'",
+				"txt":  "'Posters'",
+				"end": "true"
+			},
+
+			"retoque": {
+				"cx": "w/2",
+				"cy": "h/2",
+				"r": 2,
+				"color": "'#a9ffe0'",
+				"id": "'retoque'",
+				"txt":  "'Retoque'",
+				"end": "true"
+			}
+		},
+
+		"contacto" : {
+			"cx": "w/2",
+			"cy": "h/2",
+			"r": 3,
+			"color": "'#a9ffe0'",		
+			"id": "'contacto'",
+			"txt":  "'Contact me'",
+			"end": "true"
+		},
+		"app" : {
+			"cx": "w/2",
+			"cy": "h/2",
+			"r": 2,
+			"color": "'#a9ffe0'",
+			"id": "'app'",
+			"txt":  "'Apps'"
+
+		},
+		"sobremi" : {
+			"cx": "w/2",
+			"cy": "h/2",
+			"r": 4,
+			"color": "'#a9ffe0'",
+			"id": "'sobremi'",
+			"txt":  "'About me'",
+			"end": "true"
+		}
+	}
+
+}

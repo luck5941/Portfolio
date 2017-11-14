@@ -1,0 +1,28 @@
+{	
+	"enlacesDirectos" : 
+	[
+		{
+			"name": "trabajos",
+			"color": "#b7e2af",
+			"r": "w*1/100"
+		},
+		{		
+			"name": "contacto",
+			"color": "#b7e2af",
+			"r": "w*1/100"
+		},
+		{
+			"name": "aplicaciones",
+			"color": "#b7e2af",
+			"r": "w*1/100"	
+		},
+		{
+			"name": "sobremi",
+			"color": "#b7e2af",
+			"r": "w*1/100"
+		}
+
+	]
+
+
+}

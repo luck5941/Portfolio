@@ -253,8 +253,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 					this.c.jqrTxt.attr({'x': (this.posArr[this.nPos][0]-this.c.r),'y': this.c.cy})				
 				if (typeof(this.link) !== 'undefined')
 					this.link.attr({'x1': this.posArr[this.nPos][0], 'y1': this.posArr[this.nPos][1]});
-				
-			n = (n==360) ? 0: n+1;			
 			await sleep(this.speed)
 		}
 	}
@@ -350,37 +348,33 @@ function NODE(circle, parent, classSelector = '', move = true){
 			var distancia_v = Math.pow(Math.pow(vX,2)+Math.pow(vY,2),0.5); //|v|
 			var cos = u_por_v/(distancia_v*distancia_u); //El coseno
 			alpha = Math.acos(cos);
-			log(alpha);
-			this.nPos = parseInt(toDegree(alpha));
-			log(this.nPos);
+			log(`alpha vale: ${alpha}`);
+			log(`Los grados son: ${toDegree(alpha)}`);			
+			//this.nPos = parseInt(toDegree(alpha));
+			//log(this.nPos);
 			this.posArr = posi;
 			var cuadrante = 0;
 			if (this.c.cx >= this.parent.cx){
-				/*if (this.c.cy >= this.parent.cy)
-					cuadrante = 0;
-				else
-					cuadrante = 1;*/
 				cuadrante = (this.c.cy >= this.parent.cy) ? 0 : 1;
 			}
 			else {
-				/*if (this.c.cy >= this.parent.cy)
-					cuadrante = 3;
-				else
-					cuadrante = 2;*/
 				cuadrante = (this.c.cy >= this.parent.cy) ? 3 : 2 
 			}
-			this.nPos = parseInt(toDegree(alpha)) + (90*cuadrante);
-		}
+			/*
+			*Cuando el cuadrante es impar, los grados son al reves, es por esoq ue se multiplican por -1 y se le suma un cuadrante para cuadrar la diferencia
+			*/
+			this.nPos = (cuadrante%2==0) ? parseInt(toDegree(alpha)) + (90*cuadrante) : (-parseInt(toDegree(alpha))) + (90*(cuadrante+1));
+	}
 		
-		if (move) this.c.canMove();
-		//this.linkDraw();
-		this.posArr = this.posiciones(this.parent.cx, this.parent.cy);
-		if (typeof(this.parent.soon) !== 'undefined') 
-			this.parent.soon.push(this);
-		else{
-			this.parent.soon = [];
-			this.parent.soon.push(this);
-		}
+	if (move) this.c.canMove();
+	//this.linkDraw();
+	this.posArr = this.posiciones(this.parent.cx, this.parent.cy);
+	if (typeof(this.parent.soon) !== 'undefined') 
+		this.parent.soon.push(this);
+	else{
+		this.parent.soon = [];
+		this.parent.soon.push(this);
+	}
 }
 
 

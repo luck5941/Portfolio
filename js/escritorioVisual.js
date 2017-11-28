@@ -77,23 +77,9 @@ var mainR = w*10/100,
 	instagramIcon = '<path stroke="#000000" fill="none" stroke-width="2px" d="M20 0 L80 0 Q100 00 100 20 L100 80 Q100 100 80 100 L20 100 Q0 100 0 80 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#000" d="M20 0 L80 0 Q100 00 100 20 L100 50 L0 50 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#fff" d="M20 15 L80 15 Q90 15 90 25 L90 50 L10 50 L10 25 Q10 15 20 15 Z"/><path stroke="none" fill="#000" d="M10 50 L10 80 Q10 90 20 90 L80 90 Q90 90 90 80 L90 50 L10 50"/><g stroke-width=2px><path stroke="#fff"d="M30,50 a20,20 0 1,0 40,0z"/><path stroke="#000" fill="none"d="M30,50 a-20,20 0 1,1 40,0z"/></g><circle cx="75" cy="27" r="5"/>'	
 	 
 function toRadian(degree) {return n =  degree *  Math.PI/180;}
-function toDegree(radian) {return n =  radian *  180/Math.PI;}
-/*
-function getData(json, name, obj) {
-	var uri = 'json/'+json + '.json'
 
-	$.getJSON(uri, function(d){
-		log(d);
-		var d = d[name];
-		obj.c.svg.attr('r', function(){return d.r*obj.parent.r/10})
-					.attr('fill', function(){return d.color})
-		obj.speed = d.speed;
-		obj.c.r = d.r*obj.parent.r/10
-		obj.c.txtCreate(d, obj);
-	})	
-	.fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + errorThrown); })
-}
-*/
+function toDegree(radian) {return n =  radian *  180/Math.PI;}
+
 function generateCirculos(json, cont=true, arrayName = '', family = undefined){
 	//parent corresponde al nivel en el que está
 	var array = [];
@@ -240,41 +226,4 @@ minify.iconJqr.css('display', 'none');
 $('body').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
 
 
-/*
-var trabajos = new CIRCULO(w/2, h/2+50, w*1/100, "#ffffff", 'trabajos');
-var contacto = new CIRCULO(w/2, h/2+50, w*1/100, "#ffffff", 'contacto');
-var aplicaciones = new CIRCULO(w/2, h/2+50, w*1/100, "#ffffff", 'aplicaciones');
-var sobremi = new CIRCULO(w/2, h/2+50, w*1/100, "#ffffff", 'sobremi');
 
-//Contenido de los circulos (no nodos)
-
-
-
-//Intanciar nodos
-trabajos = new NODE(trabajos, desktop, 'enlacesDirectos')
-contacto = new NODE(contacto, desktop, 'enlacesDirectos')
-aplicaciones = new NODE(aplicaciones, desktop, 'enlacesDirectos')
-sobremi = new NODE(sobremi, desktop, 'enlacesDirectos')
-
-//Conviene guardar cada lista de nodos en una lista para tener un acceso rapido a ellos
-enlacesDirectos = [trabajos, contacto, aplicaciones, sobremi]
-
-
-
-//Iniciar la rotacion
-
-trabajos.rotateNode()
-contacto.rotateNode()
-aplicaciones.rotateNode()
-sobremi.rotateNode()
-
-//cambiar propiedades de los nodos
-getData('enlacesDirectos', 'trabajos', trabajos)
-getData('enlacesDirectos', 'contacto', contacto)
-getData('enlacesDirectos', 'app', aplicaciones)
-getData('enlacesDirectos', 'sobremi', sobremi)
-
-//Establecer un angulo de diferencia
-
-separate(enlacesDirectos);
-*/

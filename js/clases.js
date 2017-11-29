@@ -314,7 +314,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 		*(siendo u con el valor 0 y v con la pos actual)
 		*para obtener el ángulo que lo forman
 		*
-		*
 		*/
 		this.c.cx = this.c.jqr.attr('cx');
 		this.c.cy = this.c.jqr.attr('cy');
@@ -350,8 +349,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 			alpha = Math.acos(cos);
 			log(`alpha vale: ${alpha}`);
 			log(`Los grados son: ${toDegree(alpha)}`);			
-			//this.nPos = parseInt(toDegree(alpha));
-			//log(this.nPos);
 			this.posArr = posi;
 			var cuadrante = 0;
 			if (this.c.cx >= this.parent.cx){

@@ -9,28 +9,10 @@ var w = parseInt($('body').css('width')),
 	menu = $('#menu'),
 	fill = $('.fill');
 
-var mainR = w*10/100,
+var mainR = 10,
 	lineColor = '#5E69BC',
-	fillColor = 'black'
-	/*trushIcon = { //Caracteristicas del icono de la papela
-		"elem": [
-			{'name': 'ellipse', 'cx': 39.1, 'cy': 11, 'rx': 37.1, 'ry': 9, 'fill': fillColor},
-			{'name': 'line', 'x1': 76.3,'y1': 11, 'x2': 69.9, 'y2': 74.6},
-			{'name': 'line', 'x1': 2,'y1': 11, 'x2': 8.4, 'y2': 73.6},
-			{'name': 'path', 'd':'M69.9,74c0,4.1-13.8,7.5-30.8,7.5S8.4,78.1,8.4,74'}
-		],
-		"comon": {'fill':'none','stroke':lineColor,'stroke-width':4,'stroke-linecap': 'round','stroke-miterlimit':10, 'stroke-linejoin':'round'}
-	},
-	openIcon = { //caracteristicas del simbolo de open
-		"elem": [
-			{'name': 'rect', 'x': 2, 'y' : 2, 'width': 59.2, 'height': 59.2},
-			{'name': 'rect', 'x': 16.6, 'y' : 30, 'width': 30, 'height': 30, "fill": fillColor}
-		],
-		"comon": {'fill':'none','stroke':lineColor,'stroke-width':4,'stroke-linecap': 'round','stroke-miterlimit':10, 'stroke-linejoin':'round'}
-
-	},
-	*/
-	 trushIcon = {
+	fillColor = 'black',
+	trushIcon = {
         "elem": [
             {'name': "path", 'd': "M8,16.5c0,0,0.4,6,0.9,7.3c0,0-0.5,1.5,0.5,2.7c0,0-0.7,1,0,2.9l4.5,39c0,0-0.4,1.7,0.4,3.1 c0,0-0.1,3.7,0.5,4.8c0,0-0.6,1.2,0.3,3.2l0.7,7c0,0-2.1,3.6,4.1,6.8c6.3,3.2,17.5,5.1,25.7,4.9c8.1-0.2,28-2.4,28.3-10.4 c0,0,0-0.3-0.3-0.8l1-7c0,0,0.5-0.5,0.3-2c-0.2-1.5,5.8-47.8,5.8-47.8s0.5-0.8,0.2-1.8l0.2-1.6c0,0,0.3-0.2,0.1-1.2l1.4-10.2 L8,15.3L8,16.5z"},
             {'name': 'path', 'd': 'M82.5,16.3c0,0,3.1-0.2,5.7-1.5c0,0,3.8-1.2,0.3,2.8c0,0-2.6,3-7.1,4.7c0,0-1.6,0.3-4.2,3.4 c0,0-0.8-0.9-0.4-2.2c0,0,0.5-1.3,1.6-1.9c0,0,6.1-1.4,9.1-4.9c0,0-2,0.1-4.9,1.6L82.5,16.3z'},
@@ -198,15 +180,15 @@ function generateFill(id){
 
 
 //Presentar el entorno de forma visual
-$svg.attr({'height': h})
+//$svg.attr({'height': h})
 
 
 /*Instanciar circulos*/
-var minify = new CIRCULO(w-50, 50, w*3/200, "#f4f3d3", 'minify');
-var papelera = new CIRCULO(50, 50, w*3/100, "#f4f3d3", 'papelera');
-var open = new CIRCULO(50, h-100, w*3/100, "#f4f3d3", 'open');
-var desktop = new CIRCULO(w/2, h/2, mainR, "#cfd3e5", 'desktop', 'Desktop' );
-//desktop.txtCreate({'txt': 'Desktop', 'r':desktop.r});
+var minify = new CIRCULO(98, 95, 2, "#f4f3d3", 'minify');
+var papelera = new CIRCULO(2, 5, 2, "#f4f3d3", 'papelera');
+var open = new CIRCULO(2, 95, 2, "#f4f3d3", 'open');
+var desktop = new CIRCULO(50, 50, mainR, "#cfd3e5", 'desktop', 'Desktop' );
+desktop.txtCreate({'txt': 'Desktop', 'r':desktop.r});
 papelera.iconCreate(trushIcon);
 open.iconCreate(openIcon);
 minify.iconCreate(minifyIcon)

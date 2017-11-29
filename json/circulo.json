@@ -1,16 +1,16 @@
 {
 	"desktop": {
 		"trabajos" : {
-			"cx": "w/2",
-			"cy": "h/2",
+			"cx": "50",
+			"cy": "50",
 			"r": 5,
 			"color": "'#a9ffe0'",
 			"id": "'trabajos'",
 			"txt":  "'Works'",
 
 			"tresD" : {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 2,
 				"color": "'#a9ffe0'",
 				"id": "'tresD'",
@@ -19,8 +19,8 @@
 			},
 
 			"fotografia": {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 4,
 				"color": "'#a9ffe0'",
 				"id": "'fotografia'",
@@ -28,8 +28,8 @@
 
 
 				"arquitectura": {
-					"cx": "w/2",
-					"cy": "h/2",
+					"cx": "50",
+					"cy": "50",
 					"r": 3,
 					"color": "'#a9ffe0'",
 					"id": "'arquitectura'",
@@ -38,8 +38,8 @@
 				},
 
 				"otros": {
-					"cx": "w/2",
-					"cy": "h/2",
+					"cx": "50",
+					"cy": "50",
 					"r": 2,
 					"color": "'#a9ffe0'",
 					"id": "'otros'",
@@ -48,8 +48,8 @@
 				},
 
 				"retratos": {
-					"cx": "w/2",
-					"cy": "h/2",
+					"cx": "50",
+					"cy": "50",
 					"r": 5,
 					"color": "'#a9ffe0'",
 					"id": "'retratos'",
@@ -58,8 +58,8 @@
 				},
 
 				"vidreoMetal": {
-					"cx": "w/2",
-					"cy": "h/2",
+					"cx": "50",
+					"cy": "50",
 					"r": 3,
 					"color": "'#a9ffe0'",
 					"id": "'vidreoMetal'",
@@ -69,8 +69,8 @@
 			},			
 
 			"media": {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 2,
 				"color": "'#a9ffe0'",
 				"id": "'media'",
@@ -79,8 +79,8 @@
 			},
 
 			"packaging": {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 2,
 				"color": "'#a9ffe0'",
 				"id": "'packaging'",
@@ -89,8 +89,8 @@
 			},
 
 			"posters": {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 3,
 				"color": "'#a9ffe0'",
 				"id": "'posters'",
@@ -99,8 +99,8 @@
 			},
 
 			"retoque": {
-				"cx": "w/2",
-				"cy": "h/2",
+				"cx": "50",
+				"cy": "50",
 				"r": 2,
 				"color": "'#a9ffe0'",
 				"id": "'retoque'",
@@ -110,8 +110,8 @@
 		},
 		
 		"contacto" : {
-			"cx": "w/2",
-			"cy": "h/2",
+			"cx": "50",
+			"cy": "50",
 			"r": 3,
 			"color": "'#a9ffe0'",		
 			"id": "'contacto'",
@@ -120,8 +120,8 @@
 		},
 
 		"sobremi" : {
-			"cx": "w/2",
-			"cy": "h/2",
+			"cx": "50",
+			"cy": "50",
 			"r": 4,
 			"color": "'#a9ffe0'",
 			"id": "'sobremi'",

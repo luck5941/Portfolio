@@ -145,8 +145,8 @@ $('body').on('mousedown', "[move='true']", function(){
 	her.css('cursor', closeHand);
 	$svg.mousemove(function(event){
 		if (moveFlag){
-			x = event.pageX;
-			y = event.pageY;
+			x = event.pageX*100/w;
+			y = (event.pageY*100/h)/(w/h);
 			obj = eval(her.attr('id'));
 			obj.move(x, y);			
 			gravity = true;
@@ -210,18 +210,6 @@ $('body').on('mousemove', '.fill', function(e){
 		direction = '';
 		desplazar = false;
 	}
-	/*else if (e.pageX >= obj.cordX +obj.w-obj.border && e.pageY >=obj.cordY+obj.h-obj.border){
-		$(this).css('cursor', cursorRightDown);
-		direction = 'rightDown';
-	}
-	else if (e.pageX <= obj.cordX +obj.border && e.pageY <=obj.cordY+obj.border){
-		$(this).css('cursor', cursorLeftTop);
-		direction = 'leftTop';
-	}
-	else if (e.pageX <= obj.cordX +obj.border && e.pageY >=obj.cordY+obj.h-obj.border){
-		$(this).css('cursor', cursorLeftDown);
-		direction = 'leftDown';
-	}*/
 	else if (e.pageX >= obj.cordX +obj.w-obj.border){
 		$(this).css('cursor', cursorRight);
 		direction = 'right';
@@ -234,10 +222,6 @@ $('body').on('mousemove', '.fill', function(e){
 		$(this).css('cursor', cursorDown);
 		direction = 'down';
 	}
-	/*else if (e.pageY <=obj.cordY+obj.border && e.pageX <= obj.cordX + obj.w-50){
-		$(this).css('cursor', cursorTop);
-		direction = 'top';
-	}*/
 	else{
 		$(this).css('cursor', 'inherit');
 		desplazar = false;
@@ -360,7 +344,7 @@ $('body').on('mouseenter', '#minify', function() {
 $('body').on('click', '.second', function() {
 	var id = $(this).attr('id').replace('Min', '');
 	eval('var obj = ' +id);
-	obj.jqr.css({'display': 'blok', 'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0, 'opacity': 1})
+	obj.jqr.css({'display': 'blok', 'left': minify.cx*w/100, 'top': (minify.cy*h/100)/(h/w), 'width': 0, 'height': 0, 'opacity': 1})
 			.animate({'left': obj.cordX, 'top': obj.cordY, 'width': obj.w, 'height': obj.h}, 1000);
 	minify.secondPlane = minify.secondPlane.popMe(obj);
 	$('.second').remove();

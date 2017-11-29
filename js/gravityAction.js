@@ -28,7 +28,8 @@ open.gravityAction = async function(el) {
 	*por parentesco directo (hermanos y padre) al nodo open
 	*y "expulsa" los respectivos
 	*/
-	//Si no es un nodo u open no se debe de ejecutar	
+	//Si no es un nodo u open no se debe de ejecutar
+	console.log("gravityActive")
 	if (!this.gravityActive /*|| typeof(el.entra) == 'undefined'*/) return;
 	if (typeof(el.entra) !== 'undefined'){
 		if (!el.c.end){

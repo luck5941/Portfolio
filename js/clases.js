@@ -5,7 +5,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 	*/
 
 	this.cx = cx;
-	this.cy = cy;
+	this.cy = cy/(w/h);
 	this.r = r;
 	this.maxR = this.r*1.5
 	this.fill = fill;
@@ -187,7 +187,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 	this.cy = this.parent.cy +this.parent.r*2;
 	this.move = true;	
 	//this.d1_init = Math.pow(Math.pow((this.cx-this.parent.cx),2)+Math.pow((this.cy-this.parent.cy),2),0.5);
-	this.d1_init = 200;
+	this.d1_init = 20;
 	this.d1 = this.d1_init;
 	this.nPos = 0;
 	this.speed = 60;
@@ -379,8 +379,8 @@ function NODE(circle, parent, classSelector = '', move = true){
 function FILL(contentForm, content, id){
 	this.contentForm = contentForm;
 	this.content = content;
-	this.cordX = open.cx;
-	this.cordY = open.cy;
+	this.cordX = open.cx*w/100;
+	this.cordY = (open.cy*h/100)/(h/w);
 	this.w = w*0.4;
 	this.h = h*0.6;
 	this.border = 20;
@@ -430,7 +430,7 @@ function FILL(contentForm, content, id){
 
 	}
 	this.close = async function() {
-		this.jqr.animate({'left': open.cx, 'top': open.cy, 'width': 0, 'height': 0}, 1000);
+		this.jqr.animate({'left': open.cx*w/100, 'top': (open.cy*h/100)/(h/w), 'width': 0, 'height': 0}, 1000);
 		await sleep(1000);
 		this.jqr.remove();
 		/*open.gravityActive = true;
@@ -440,7 +440,7 @@ function FILL(contentForm, content, id){
 	}
 
 	this.minify = async function() {
-		this.jqr.animate({'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0}, 1000);
+		this.jqr.animate({'left': minify.cx*w/100, 'top': (minify.cy*h/100)/(h/w), 'width': 0, 'height': 0}, 1000);
 		await sleep(1000);
 		this.jqr.css('display', 'none');
 		minify.secondPlane.push(this);

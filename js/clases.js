@@ -54,7 +54,8 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 		*de cada repetición para obtener el desplazamiento
 		*/
 		//Determinar la dirección del movimiento
-		var dx = destX-this.cx,
+		var destY = destY/(w/h),
+			dx = destX-this.cx,
 			dy = destY-this.cy,
 			v = 50,
 			dstX = (dx/t)*v,
@@ -64,7 +65,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 			dcha_init = dcha,
 			arrba_init = arrba, 
 			moverX = true,
-			moverY = true;			
+			moverY = true;
 		while (moverX && moverY){
 			dx = destX-this.cx;
 			dy = destY-this.cy;
@@ -83,7 +84,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 				this.jqrTxt.attr('x', this.cx-this.r);
 			}
 			await sleep(v);
-		}		
+		}
 	}
 
 	this.txtCreate = function(d, obj = this) {
@@ -149,9 +150,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 			if (d <= this.r*3){				
 				this.jqr.attr('r', this.maxR);
 				this.gravityActive = true;
-				log('d menor que el triple del radio')
 				return;
-				log('d menor que el triple del radio despues del return')
 			}
 			else{				
 				this.jqr.attr('r', this.r)				
@@ -348,8 +347,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 			var distancia_v = Math.pow(Math.pow(vX,2)+Math.pow(vY,2),0.5); //|v|
 			var cos = u_por_v/(distancia_v*distancia_u); //El coseno
 			alpha = Math.acos(cos);
-			log(`alpha vale: ${alpha}`);
-			log(`Los grados son: ${toDegree(alpha)}`);			
 			//this.nPos = parseInt(toDegree(alpha));
 			//log(this.nPos);
 			this.posArr = posi;
@@ -396,7 +393,8 @@ function FILL(contentForm, content, id){
 	this.create = async function(){
 		var init = "<div class=\"fill\" id= "+this.id+"><div class=\"header\">"+this.id.replace('Fill', '')+"<div class=\"buttom close\"></div><div class=\"buttom minify\"></div><div class=\"buttom maximizy\"></div></div><div class=\"main\"><div class=scroll></div>",
 			end = "</div></div>",
-			id = '#' + this.id
+			id = '#' + this.id;
+		if (!this.contentForm) return;
 		switch (this.contentForm) {
 			case 'word':
 				var txt = init + '<iframe class="paper" src='+this.content+'>'+this.content +'</iframe>' + end;
@@ -410,14 +408,15 @@ function FILL(contentForm, content, id){
 				break;
 		}
 		$(txt).insertAfter($svg)
-		var top = randomMe(0, h-this.h );
+		var top = randomMe(0, h-this.h/(w/h) );
 		var left = randomMe(0, w-w*0.4) 
 		this.jqr = $(id);
 		this.jqr
 			.css({'left': this.cordX, 'top': this.cordY, 'width':0, 'height': 0})
 			.animate({'left': left, 'top': top, 'width': this.w, 'height': this.h}, 1000);
 		$(id + ' .paper').animate({'height': this.h*0.8});
-		await sleep(1000)
+		await sleep(1000);
+
 		this.cordX = parseInt(this.jqr.offset().left);
 		this.cordY = parseInt(this.jqr.offset().top);
 		this.w = parseInt(this.jqr.css('width'));
@@ -436,10 +435,6 @@ function FILL(contentForm, content, id){
 		this.jqr.animate({'left': open.cx*w/100, 'top': (open.cy*h/100)/(h/w), 'width': 0, 'height': 0}, 1000);
 		await sleep(1000);
 		this.jqr.remove();
-		/*open.gravityActive = true;
-		open.gravityAction(this.parent.parent);
-		//open.gravityAction(this.parent);
-		open.gravityActive = false;*/
 	}
 
 	this.minify = async function() {
@@ -451,7 +446,6 @@ function FILL(contentForm, content, id){
 			minify.jqr.css('display', 'block')
 			minify.iconJqr.css('display', 'block')
 		}
-		
 	}
 
 	this.maximizy = function() {
@@ -617,7 +611,10 @@ function FILL(contentForm, content, id){
 		if (w<h){
 			$('#'+id +'Fill .myImg').css({'height': (obj.h-10), 'width': (obj.h-10)*w/h})
 		}
-	}	
+	}
 
-	this.create()
+	if ($('#'+this.id).length === 0)
+		this.create();
+	else
+		log($('#'+this.id))
 }

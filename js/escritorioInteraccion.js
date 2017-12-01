@@ -135,8 +135,9 @@ $('body').on('mousedown', '.pointer', function(){
 
 });
 
-$('body').on('mousedown', "[move='true']", function(){
-	her = $(this);
+$('body').on('mousedown', "[move='true']", function(e){
+	e.stopPropagation();
+	her = ($(this).attr('id').search('_txt') === -1) ? $(this) : $('#' + $(this).attr('id').replace('_txt', ''));
 	moveFlag = true;
 	var x = 0,
 		y = 0,		
@@ -176,11 +177,19 @@ $('body').on('mousedown', "[move='true']", function(){
 	return;        	
 });
 
-$('body').on('dblclick', "[move='true']", async function(){
-	her = $(this);
-	obj = eval(her.attr('id'));
+$('body').on('dblclick', "[move='true']", async function(e){
+	e.stopPropagation();
+	her = ($(this).attr('id').search('_txt') === -1) ? $(this) : $('#' + $(this).attr('id').replace('_txt', ''));
+	obj = eval(her.attr('id').replace('_txt', ''));
+
 	obj.entra = false;
-	obj.c.goTo(open.cx, open.cy, 1500)
+	try{
+		obj.c.goTo(open.cx, open.cy/(h/w), 1500)
+	}
+	catch(e) {
+		log(e)
+		obj.goTo(open.cx, open.cy/(h/w), 1500)
+	}
 	await sleep(1600)
 	open.gravityActive = true;
 	open.gravityAction(obj);

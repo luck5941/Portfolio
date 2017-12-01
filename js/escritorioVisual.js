@@ -188,7 +188,7 @@ var minify = new CIRCULO(98, 95, 2, "#f4f3d3", 'minify');
 var papelera = new CIRCULO(2, 5, 2, "#f4f3d3", 'papelera');
 var open = new CIRCULO(2, 95, 2, "#f4f3d3", 'open');
 var desktop = new CIRCULO(50, 50, mainR, "#cfd3e5", 'desktop', 'Desktop' );
-desktop.txtCreate({'txt': 'Desktop', 'r':desktop.r});
+//desktop.txtCreate({'txt': 'Desktop', 'r':desktop.r});
 papelera.iconCreate(trushIcon);
 open.iconCreate(openIcon);
 minify.iconCreate(minifyIcon)

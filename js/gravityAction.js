@@ -29,7 +29,6 @@ open.gravityAction = async function(el) {
 	*y "expulsa" los respectivos
 	*/
 	//Si no es un nodo u open no se debe de ejecutar
-	console.log("gravityActive")
 	if (!this.gravityActive /*|| typeof(el.entra) == 'undefined'*/) return;
 	if (typeof(el.entra) !== 'undefined'){
 		if (!el.c.end){
@@ -37,10 +36,10 @@ open.gravityAction = async function(el) {
 		el.c.jqrTxt.remove();
 		for (var i = 0; i<el.parent.soon.length; i++){
 			el.parent.soon[i].entra = false
-			el.parent.soon[i].c.goTo(this.cx, this.cy, 2000);
+			el.parent.soon[i].c.goTo(this.cx, this.cy/(h/w), 2000);
 		}
-		el.parent.goTo(this.cx, this.cy, 2000);
-		await sleep (2000)
+		el.parent.goTo(this.cx, this.cy/(h/w), 2000);
+		await sleep (2000);
 		for (var i = 0; i<el.parent.soon.length; i++){
 			el.parent.soon[i].c.jqr.remove();
 			el.parent.soon[i].c.jqrTxt.remove();
@@ -61,14 +60,13 @@ open.gravityAction = async function(el) {
 		family = family.splice(0,family.length-1).reverse().join('.');
 		if (!el.c.end){
 			var parent = el.parent;
-			eval(el.c.id + "= new CIRCULO(this.cx, this.cy, mainR, '#cfd3e5', '"+el.c.id+"', '"+ family.replaceMe(/[.]/, '/') +"')");
-			eval(el.c.id + ".goTo(w/2, h/2, 1000)");
+			eval(el.c.id + "= new CIRCULO(this.cx, this.cy/(h/w), mainR, '#cfd3e5', '"+el.c.id+"', '"+ family.replaceMe(/[.]/, '/') +"')");
+			eval(el.c.id + ".goTo(50, 50, 1000)");
 			eval(el.c.id + ".parent = parent");
 			eval(el.c.id + ".canMove()");
 			this.jqr.attr('r', this.r);
 			await sleep (500);
 			var next = generateSoon('circulo', true, el.c.id+'_soon', family);
-			log('aloha')
 		}
 		this.jqr.attr('r', this.r);
 		el.d1 = el.d1_init;
@@ -79,7 +77,7 @@ open.gravityAction = async function(el) {
 		family = el.txt.replaceMe('/', '.').toLowerCase().split('.');
 		family.splice(family.length-1, family.length)
 		eval(parent.id + "= new CIRCULO(this.cx, this.cy, mainR, '#cfd3e5', '"+parent.id+"', '"+parent.txt+"')");
-		eval(parent.id + ".goTo(w/2, h/2, 1000);");
+		eval(parent.id + ".goTo(50, 50, 1000);");
 		el.jqr.remove();
 		for (var i = 0; i< el.soon.length; i++){
 			el.soon[i].entra = false

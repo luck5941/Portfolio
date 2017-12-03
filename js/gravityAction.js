@@ -1,11 +1,11 @@
 papelera.gravityAction = async function(el) {
-	if (!this.gravityActive) return;	
+	if (!this.gravityActive) return;
 	if(typeof(el.entra) !== 'undefined') {
 		el.entra = false;
 		el.c.jqr.remove();
 		el.c.jqrTxt.remove();
 	}
-	else 
+	else
 		el.jqr.remove();
 		el.jqrTxt.remove();
 		for (var i = 0; i<el.soon.length; i++){
@@ -16,7 +16,7 @@ papelera.gravityAction = async function(el) {
 		for (var i = 0; i<el.soon.length; i++){
 			el.soon[i].c.jqr.remove();
 			el.soon[i].c.jqrTxt.remove();
-		}	
+		}
 	log(this.jqr.attr('r'))
 	this.jqr.attr('r', this.r)
 	log(this.jqr.attr('r'))
@@ -49,10 +49,10 @@ open.gravityAction = async function(el) {
 		}
 		var family = el.c.id + ".",
 			node = el
-		while (true){	
+		while (true){
 			if (typeof(node.parent) !== 'undefined'){
 				family += node.parent.id + ".";
-				node = node.parent; 
+				node = node.parent;
 			}
 			else break;
 		}
@@ -76,12 +76,14 @@ open.gravityAction = async function(el) {
 		eval("var parent = " + el.id + ".parent");
 		family = el.txt.replaceMe('/', '.').toLowerCase().split('.');
 		family.splice(family.length-1, family.length)
-		eval(parent.id + "= new CIRCULO(this.cx, this.cy, mainR, '#cfd3e5', '"+parent.id+"', '"+parent.txt+"')");
-		eval(parent.id + ".goTo(50, 50, 1000);");
+		eval(parent.id + "= new CIRCULO(this.cx, this.cy/(h/w), mainR, '#cfd3e5', '"+parent.id+"', '"+parent.txt+"')");
+		eval (`var p = ${parent.id}`);
+		// eval(parent.id + ".goTo(50, 50, 1000);");
+		p.goTo(50, 50, 1000); 
 		el.jqr.remove();
 		for (var i = 0; i< el.soon.length; i++){
 			el.soon[i].entra = false
-			el.soon[i].c.goTo(this.cx, this.cy, 500);
+			el.soon[i].c.goTo(this.cx, this.cy/(h/w), 500);
 		}
 		await sleep (500);
 		for (var i = 0; i< el.soon.length; i++){

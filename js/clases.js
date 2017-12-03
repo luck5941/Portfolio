@@ -1,7 +1,7 @@
 function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = undefined){	/*
 	*Esta clase dibuja un circulo siendo en una posicion concreta
 	*A través de esta clase se puede acceder a los diferentes selectores, tanto
-	*svg y jquery. Se le asigna un id en el dom y una clase de ser 
+	*svg y jquery. Se le asigna un id en el dom y una clase de ser
 	*/
 
 	this.cx = cx;
@@ -10,16 +10,16 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 	this.maxR = this.r*1.5
 	this.fill = fill;
 	this.id = id;
-	this.jqrTxt = undefined;	
+	this.jqrTxt = undefined;
 	this.gravityActive = false;
 	this.soon = [];
-	this.end = end;	
+	this.end = end;
 	this.class= function(name) {
 
 		this.jqr.attr('class', 'name')
-	}	
+	}
 
-	this.draw = function() {		
+	this.draw = function() {
 		var circle = svg.append('circle')
 				.attr('cx', this.cx)
 				.attr('cy', this.cy)
@@ -63,7 +63,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 			dcha = (dx<0) ? true : false,
 			arrba = (cy<0) ? false : true,
 			dcha_init = dcha,
-			arrba_init = arrba, 
+			arrba_init = arrba,
 			moverX = true,
 			moverY = true;
 		while (moverX && moverY){
@@ -88,10 +88,10 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 	}
 
 	this.txtCreate = function(d, obj = this) {
-		var	txt = svg.append('text')			
+		var	txt = svg.append('text')
 			.text(d.txt)
 		 	.style("font-size", function() {
-		 		d.r = (typeof(obj.parent)!== 'undefined') ? d.r*obj.parent.r/10 : obj.r;		 		
+		 		d.r = (typeof(obj.parent)!== 'undefined') ? d.r*obj.parent.r/10 : obj.r;
 		 		return Math.min(2 * obj.r*16, (2 * obj.r*15) / this.getComputedTextLength())+'px';
 		 	})
 			.attr("dy", ".35em")
@@ -101,7 +101,7 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 		this.jqrTxt = $('#'+ this.id+'_txt');
 		this.svgTxt = d3.select('#'+ this.id+'_txt');
 		return d.txt
-		
+
 	}
 
 	this.iconCreate = function(data) {
@@ -121,9 +121,9 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 				g.attr(i, data['comon'][i])
 			}
 		g.attr('id', 'g');
-		for (i = 0; i<data['elem'].length; i++){			
+		for (i = 0; i<data['elem'].length; i++){
 			e = g.append(data['elem'][i]['name']);
-			for (var n in data['elem'][i]){								 
+			for (var n in data['elem'][i]){
 				e.attr(n, data['elem'][i][n]);
 			}
 		}
@@ -141,24 +141,24 @@ function CIRCULO(cx, cy, r, fill, id , txt = undefined, end = false,  icon = und
 		*permite determinar el radio de actiación de un nodo con
 		*esta capacidad. Si se suelta el nodo dentro del radio
 		*de actuación es cuando se llama a la función "real"
-		*/		
+		*/
 		while (gravity){
 			if (typeof(el.c) !== 'undefined')
 				d = Math.pow(Math.pow((el.c.cx-this.cx),2)+Math.pow((el.c.cy-this.cy),2),0.5);
 			else
 				d = Math.pow(Math.pow((el.cx-this.cx),2)+Math.pow((el.cy-this.cy),2),0.5);
-			if (d <= this.r*3){				
+			if (d <= this.r*3){
 				this.jqr.attr('r', this.maxR);
 				this.gravityActive = true;
 				return;
 			}
-			else{				
-				this.jqr.attr('r', this.r)				
+			else{
+				this.jqr.attr('r', this.r)
 				this.gravityActive = false;
-			}		
+			}
 		await sleep(200);
 		}
-	}	
+	}
 
 	this.gravityAction = function(el) {
 		//Las diferentes aciones están declaradas en: gravityAction.js
@@ -181,10 +181,10 @@ function NODE(circle, parent, classSelector = '', move = true){
 	*rápido
 	*/
 	this.c = circle;
-	this.parent = (typeof(parent.c) == 'undefined') ? parent : parent.c;	
+	this.parent = (typeof(parent.c) == 'undefined') ? parent : parent.c;
 	this.cx = this.parent.cx;
 	this.cy = this.parent.cy +this.parent.r*2;
-	this.move = true;	
+	this.move = true;
 	//this.d1_init = Math.pow(Math.pow((this.cx-this.parent.cx),2)+Math.pow((this.cy-this.parent.cy),2),0.5);
 	this.d1_init = 20;
 	this.d1 = this.d1_init;
@@ -199,17 +199,17 @@ function NODE(circle, parent, classSelector = '', move = true){
 	else
 		classSelector = undefined;
 
-	this.c.r = this.c.r*this.parent.r/10;	
+	this.c.r = this.c.r*this.parent.r/10;
 	this.c.jqr.attr('r', this.c.r);
 	if (typeof(this.c.jqrTxt) !== 'undefined'){
 		this.c.jqrTxt.remove()
 		var her = this.c,
 			d = {'txt': her.txt, 'r': her.r};
 		$('text').remove('#'+her.id + '_txt')
-		var	txt = svg.append('text')			
+		var	txt = svg.append('text')
 			.text(d.txt)
 		 	.style("font-size", function() {
-		 		d.r = (typeof(this.parent)!== 'undefined') ? her.r*her.r.parent.r/10 : her.r;		 		
+		 		d.r = (typeof(this.parent)!== 'undefined') ? her.r*her.r.parent.r/10 : her.r;
 		 		return Math.min(2 * her.r*15, (2 * her.r*15 - 8) / this.getComputedTextLength())+'px';
 		 	})
 			.attr("dy", ".35em")
@@ -222,7 +222,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 
 	this.linkDraw = function() {
 		/*
-		*genera un link entre el nodo padre y el nodo hijo		
+		*genera un link entre el nodo padre y el nodo hijo
 		*/
 		svg.append('line')
 			.attr('x1', this.cx)
@@ -231,16 +231,16 @@ function NODE(circle, parent, classSelector = '', move = true){
 			.attr('y2', this.parent.cy)
 			.attr('stroke', 'black')
 			.attr('stroke-width', '2')
-			.attr('id', this.c.id +'_line');			
+			.attr('id', this.c.id +'_line');
 		this.link = $('#'+this.c.id+'_line')
 
 
 	}
 
 	this.rotateNode = async function() {
-		while (this.entra) {			
-				this.nPos = (this.nPos !== 360)? this.nPos+1:0;				
-				parent = this.parent.jqr;				
+		while (this.entra) {
+				this.nPos = (this.nPos !== 360)? this.nPos+1:0;
+				parent = this.parent.jqr;
 				parentX = parseInt(parent.attr('cx'));
 				parentY = parseInt(parent.attr('cy'));
 				this.d1 = (!this.extControl) ? Math.pow(Math.pow((this.c.cx-this.parent.cx),2)+Math.pow((this.c.cy-this.parent.cy),2),0.5) : this.d1;
@@ -249,7 +249,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 				this.c.cy = this.posArr[this.nPos][1];
 				this.c.jqr.attr({'cx': this.c.cx, 'cy': this.c.cy});
 				if (typeof(this.c.jqrTxt) !== 'undefined')
-					this.c.jqrTxt.attr({'x': (this.posArr[this.nPos][0]-this.c.r),'y': this.c.cy})				
+					this.c.jqrTxt.attr({'x': (this.posArr[this.nPos][0]-this.c.r),'y': this.c.cy})
 				if (typeof(this.link) !== 'undefined')
 					this.link.attr({'x1': this.posArr[this.nPos][0], 'y1': this.posArr[this.nPos][1]});
 			await sleep(this.speed)
@@ -258,7 +258,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 
 	/*
 	 * (array) this.posiciones
-	 * 
+	 *
 	 * parentX -> Int -> Posición x del objeto sobre el que rota
 	 *
 	 * parentY -> Int -> Posición y del objeto sobre el que rota
@@ -275,7 +275,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 		*
 		*parentX es la posicion x del padre, parentY  la posicion y d1 la distancia que hay entre ambos
 		*/
-		if (!d1) d1 = this.d1		
+		if (!d1) d1 = this.d1
 		var arr = [];
 		for (var i = 0; i<= 360; i++){
 			alpha = i;
@@ -294,10 +294,10 @@ function NODE(circle, parent, classSelector = '', move = true){
 		this.c.cx = x;
 		this.c.cy = y;
 		this.entra = false;
-		this.d1 = Math.pow(Math.pow((x-this.parent.cx),2)+Math.pow((y-this.parent.cy),2),0.5);		
+		this.d1 = Math.pow(Math.pow((x-this.parent.cx),2)+Math.pow((y-this.parent.cy),2),0.5);
 		this.c.jqr.attr({'cx': x, 'cy': y});
 		if (this.c.txt !== 'undefined'){
-			this.c.jqrTxt.attr({'x': x-this.c.r, 'y': this.c.cy});			
+			this.c.jqrTxt.attr({'x': x-this.c.r, 'y': this.c.cy});
 		}
 	}
 
@@ -319,7 +319,7 @@ function NODE(circle, parent, classSelector = '', move = true){
 		this.c.cy = this.c.jqr.attr('cy');
 		this.d1 = Math.pow(Math.pow((this.c.cx-this.parent.cx),2)+Math.pow((this.c.cy-this.parent.cy),2),0.5);
 
-		/* 
+		/*
 		 * La primera variable devuelve un array con todas las posiciones posibles con la distancia que
 		 * tiene el cuerpo desde el centro hasta el centro del padre
 		 * los valor de la pos inicial a la pos que se la asignado para generar el angulo resultante,
@@ -328,22 +328,22 @@ function NODE(circle, parent, classSelector = '', move = true){
 		 * Siendo alpha dicho angulo en radianes
 		*/
 		var posi = this.posiciones(this.parent.cx, this.parent.cy, this.d1),
-		 	uX = Math.abs(posi[0][0] - this.parent.cx), 
+		 	uX = Math.abs(posi[0][0] - this.parent.cx),
 			uY = Math.abs(posi[0][1] - this.parent.cy),
 			vX = Math.abs(this.c.cx - this.parent.cx),
 			vY = Math.abs(this.c.cy - this.parent.cy),
-			alpha = 0;			
+			alpha = 0;
 		/*
-		 *La formula para sacar el ángulo entre dos vectores es: 
+		 *La formula para sacar el ángulo entre dos vectores es:
 		 *Primero sacamos el coseno:
 		 * cos[alpha] = (v1*v2)/(|v1|*|v2|)
 		 *El producto de dos vectoroes u y v es:
-		 * ux*vx+ux*vy 
+		 * ux*vx+ux*vy
 		 *
 		*/
 
 			var u_por_v = uX*vX+uY*vY;
-			var distancia_u = Math.pow(Math.pow(uX,2)+Math.pow(uY,2),0.5); //|u| 
+			var distancia_u = Math.pow(Math.pow(uX,2)+Math.pow(uY,2),0.5); //|u|
 			var distancia_v = Math.pow(Math.pow(vX,2)+Math.pow(vY,2),0.5); //|v|
 			var cos = u_por_v/(distancia_v*distancia_u); //El coseno
 			alpha = Math.acos(cos);
@@ -355,18 +355,18 @@ function NODE(circle, parent, classSelector = '', move = true){
 				cuadrante = (this.c.cy >= this.parent.cy) ? 0 : 1;
 			}
 			else {
-				cuadrante = (this.c.cy >= this.parent.cy) ? 3 : 2 
+				cuadrante = (this.c.cy >= this.parent.cy) ? 3 : 2
 			}
 			/*
 			*Cuando el cuadrante es impar, los grados son al reves, es por esoq ue se multiplican por -1 y se le suma un cuadrante para cuadrar la diferencia
 			*/
 			this.nPos = (cuadrante%2==0) ? parseInt(toDegree(alpha)) + (90*cuadrante) : (-parseInt(toDegree(alpha))) + (90*(cuadrante+1));
 	}
-		
+
 	if (move) this.c.canMove();
 	//this.linkDraw();
 	this.posArr = this.posiciones(this.parent.cx, this.parent.cy);
-	if (typeof(this.parent.soon) !== 'undefined') 
+	if (typeof(this.parent.soon) !== 'undefined')
 		this.parent.soon.push(this);
 	else{
 		this.parent.soon = [];
@@ -406,10 +406,12 @@ function FILL(contentForm, content, id){
 			case 'image':
 				var txt = init + '<div class="myImg"><img src="'+this.content+'"></myImg>' + end;
 				break;
+			case 'video':
+				var txt = `<div class="video"><video><source src="${this.content}"></myImg>${end}`
 		}
 		$(txt).insertAfter($svg)
 		var top = randomMe(0, h-this.h/(w/h) );
-		var left = randomMe(0, w-w*0.4) 
+		var left = randomMe(0, w-w*0.4)
 		this.jqr = $(id);
 		this.jqr
 			.css({'left': this.cordX, 'top': this.cordY, 'width':0, 'height': 0})
@@ -462,11 +464,11 @@ function FILL(contentForm, content, id){
 
 		}
 		else {
-			this.cordX = this.cordX_init;	
-			this.cordY = this.cordY_init;	
-			this.w= this.w_init;	
+			this.cordX = this.cordX_init;
+			this.cordY = this.cordY_init;
+			this.w= this.w_init;
 			this.h= this.h_init;
-			this.big = false;	
+			this.big = false;
 		}
 			this.jqr.animate({'left': this.cordX, 'top': this.cordY, 'width': this.w, 'height': this.h}, 1000);
 			switch(this.contentForm){
@@ -521,7 +523,7 @@ function FILL(contentForm, content, id){
 			return;
 		}
 		html.css({'margin-top': htmlMargin+d});
-		scroll.css('top', -((htmlMargin+d)*scrollHeight)/htmlHeight);				
+		scroll.css('top', -((htmlMargin+d)*scrollHeight)/htmlHeight);
 	}
 
 	this.reSize = function(direction, cords) {
@@ -552,6 +554,7 @@ function FILL(contentForm, content, id){
 	}
 
 	function appendFiles(error, graph) {
+		log(id);
 		eval('var obj = '+id+'Fill')
 		var mult = 16;
 		$('#'+id+'Fill .main').css('background-color', 'darkblue')
@@ -591,8 +594,9 @@ function FILL(contentForm, content, id){
 					eval('var obj =' +d.name.split('.')[0] + 'Fill')
 				}
 				catch(err){
-					var error = err
-					eval(d.name.split('.')[0] + 'Fill = new FILL("image", "media/img/lucas/'+d.path+'", "'+d.name.split('.')[0]+'")');
+					var error = err;
+					var frame = (id.search('media') === -1) ? "image" : "video"
+					eval(d.name.split('.')[0] + 'Fill = new FILL("'+frame+'", "media/img/lucas/'+d.path+'", "'+d.name.split('.')[0]+'")');
 					zindex+=3;
 					eval(d.name.split('.')[0] +'Fill.jqr.css(\'z-index\', zindex)');
 				}

@@ -1,7 +1,7 @@
 /*
 *Variables relativas a selectores del dom
 */
-var setting = $('#setting'),	
+var setting = $('#setting'),
 	controlador = $('.controlador'),
 	pointer = $('.pointer')
 	her = 0,
@@ -49,7 +49,7 @@ function externalCntrl(y, i) {
 		maxD1 = 600,
 		maxSpeed = 95,
 		minD1 = mainR,
-		y = ctrlHeight -y; 		
+		y = ctrlHeight -y;
 	switch(i){
 		case 0:
 		case 1:
@@ -67,7 +67,7 @@ function externalCntrl(y, i) {
 		case 7:
 			obj = sobremi;
 			break;
-	}	
+	}
 	maxD1 = obj.d1_init
 	//var line = (i%2==0) ? obj.d1 : obj.speed
 	// ya tenemos  a que circulo nos referimos
@@ -78,24 +78,24 @@ function externalCntrl(y, i) {
 	//Con el porcentaje calculamos el resultado
 	if (i%2==0){ //el radio
 		obj.extControl = true;
-		obj.d1 = per*maxD1/100;	
+		obj.d1 = per*maxD1/100;
 	}
 	else {//la velocidad
 		obj.speed = maxSpeed - ((per)*(maxSpeed)/100);
 		obj.speed += 10;
 		if (obj.speed>maxSpeed-15){
 			obj.entra = false;
-			call = true;			
+			call = true;
 			log(obj.speed);
 		}
-		if (obj.speed>maxSpeed-19 && obj.speed<maxSpeed-16){						
+		if (obj.speed>maxSpeed-19 && obj.speed<maxSpeed-16){
 			if (call){
 				call = false;
 				obj.entra = true;
 				obj.rotateNode();
 			}
 		}
-		
+
 	}
 }
 
@@ -112,35 +112,31 @@ setting.click(function(){
 		menu.css('display', 'none')
 		//$('#controlMenu').css({'height': '40px'})
 	}
-})
+});
 
 $('body').on('mousedown', '.pointer', function(){
 	her = $(this);
-	moveFlag = true;		
+	moveFlag = true;
 	i = $(this).index('.pointer');
 	var top = parseInt($(controlador[i]).offset().top),
 		bottom = top+ctrlHeight,
 		height = parseInt(her.css('height'))
 	menu.mousemove(function(event){
 		if (moveFlag){
-			y = event.pageY - top			
-			y = (y+top<top) ? 0 : y			
-			y = (y+top>bottom) ? bottom-top-height : y			
-			her.css({'margin-top':y});			
+			y = event.pageY - top
+			y = (y+top<top) ? 0 : y
+			y = (y+top>bottom) ? bottom-top-height : y
+			her.css({'margin-top':y});
 			externalCntrl(y, i);
 		}
-	}).mouseup(function(){
-        moveFlag=false;        
-    });
+	}).mouseup(function(){moveFlag=false;});
 
-});
-
-$('body').on('mousedown', "[move='true']", function(e){
+}).on('mousedown', "[move='true']", function(e){
 	e.stopPropagation();
 	her = ($(this).attr('id').search('_txt') === -1) ? $(this) : $('#' + $(this).attr('id').replace('_txt', ''));
 	moveFlag = true;
 	var x = 0,
-		y = 0,		
+		y = 0,
 		obj = {};
 	$('#controlMenu').css('z-index', -6);
 	her.css('cursor', closeHand);
@@ -149,12 +145,12 @@ $('body').on('mousedown', "[move='true']", function(e){
 			x = event.pageX*100/w;
 			y = (event.pageY*100/h)/(w/h);
 			obj = eval(her.attr('id'));
-			obj.move(x, y);			
+			obj.move(x, y);
 			gravity = true;
 			for (var i = 0; i<gravityObject.length; i++){
 				gravityObject[i].gravityForce(obj);
 			}
-			
+
 		}
 	}).mouseup(async function(){
 		if (!moveFlag) return;
@@ -162,7 +158,7 @@ $('body').on('mousedown', "[move='true']", function(e){
         moveFlag=false;
         if (typeof(obj.entra) !== 'undefined'){
         	obj.entra = true;
-        	obj.recalcularPos()        	
+        	obj.recalcularPos()
         	await sleep(obj.speed);
         	obj.rotateNode();
         }
@@ -170,14 +166,12 @@ $('body').on('mousedown', "[move='true']", function(e){
     	gravity = false;
     	mouseup_cont++
     	for (var i = 0; i<gravityObject.length; i++){
-			gravityObject[i].gravityAction(obj);				
+			gravityObject[i].gravityAction(obj);
 		}
-		return;        	
+		return;
     })
-	return;        	
-});
-
-$('body').on('dblclick', "[move='true']", async function(e){
+	return;
+}).on('dblclick', "[move='true']", async function(e){
 	e.stopPropagation();
 	her = ($(this).attr('id').search('_txt') === -1) ? $(this) : $('#' + $(this).attr('id').replace('_txt', ''));
 	obj = eval(her.attr('id').replace('_txt', ''));
@@ -195,22 +189,9 @@ $('body').on('dblclick', "[move='true']", async function(e){
 	open.gravityAction(obj);
 	open.gravityActive = false;
 	obj.entra = true;
-	obj.rotateNode();	
+	obj.rotateNode();
 
-});
-
-$('body').on('mousewheel DOMMouseScroll', '.fill', onScroll);
-function onScroll(e, id = undefined){
-	var id = (typeof(id) == 'undefined') ? $(this).attr('id') : id.slice(1);
-	var d;
-	if (e.wheelDelta) d = e.wheelDelta;
-	if (e.originalEvent.detail) d = e.originalEvent.detail *-40;
-	if (e.originalEvent && e.originalEvent.wheelDelta) d = e.originalEvent.wheelDelta;
-	log(d);
-	eval(id+'.scroll(d)')
-}
-
-$('body').on('mousemove', '.fill', function(e){
+}).on('mousewheel DOMMouseScroll', '.fill', onScroll).on('mousemove', '.fill', function(e){
 	var id = $(this).attr('id');
 	direction = '';
 	eval('var obj = '+id);
@@ -236,9 +217,7 @@ $('body').on('mousemove', '.fill', function(e){
 		desplazar = false;
 		direction = '';
 	}
-});
-
-$('body').on('mousedown', '.fill', function(e){
+}).on('mousedown', '.fill', function(e){
 		if (!desplazar) return;
 		var id = $(this).attr('id')
 		eval ('var obj = '+id)
@@ -251,7 +230,7 @@ $('body').on('mousedown', '.fill', function(e){
 				case 'rightTop':
 					return;
 					break;
-				case 'leftTop':	
+				case 'leftTop':
 				case 'rightDown':
 				case 'leftDown':
 					cords = [(e.pageX-obj.cordX),(e.pageY-obj.cordY)];
@@ -276,30 +255,19 @@ $('body').on('mousedown', '.fill', function(e){
 			}
 		}).mouseup(function(){flag = false;})
 
-}).mouseup(function(){flag = false;});
-
-
-
-$('body').on('click', '.fill .close', function() {
+}).mouseup(function(){flag = false;}).on('click', '.fill .close', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.close();
-});
-
-$('body').on('click', '.fill .minify', function() {
+}).on('click', '.fill .minify', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.minify();
-});
-
-$('body').on('click', '.header .maximizy', function() {
+}).on('click', '.header .maximizy', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.maximizy();
-});
-
-
-$('body').on('mousedown', '.fill .header', function(e){
+}).on('mousedown', '.fill .header', function(e){
 	if(e.target !== e.currentTarget) return;
 	var id = $(this).parent().attr('id');
 	eval('var obj = '+id + ';');
@@ -317,7 +285,7 @@ $('body').on('mousedown', '.fill .header', function(e){
 				$('<div id="screenBlue" style = "height: '+h+'px"></div>').insertAfter($svg);
 			else
 				$('#screenBlue').css('display', 'block')
-			
+
 			$('#screenBlue').css({'width': 0, 'height': 0}).animate({'width': w*0.95+'px', 'height': h+'px'}, 500)
 		}
 		else
@@ -336,21 +304,14 @@ $('body').on('mousedown', '.fill .header', function(e){
 		$('#screenBlue').css('display', 'none');
 		if (e.pageY <=20)
 			obj.maximizy();
-});
-
-
-$('body').on('click', '.fill', function(){
+}).on('click', '.fill', function(){
 	var id = $(this).attr('id')
 	eval('var obj ='+ id +';');
 	zindex++
 	obj.jqr.css('z-index', zindex)
-});
-
-$('body').on('mouseenter', '#minify', function() {
+}).on('mouseenter', '#minify', function() {
 	minify.showAll();
-});
-
-$('body').on('click', '.second', function() {
+}).on('click', '.second', function() {
 	var id = $(this).attr('id').replace('Min', '');
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'blok', 'left': minify.cx*w/100, 'top': (minify.cy*h/100)/(h/w), 'width': 0, 'height': 0, 'opacity': 1})
@@ -366,10 +327,18 @@ $('body').on('click', '.second', function() {
 	var id = $(this).attr('id').replace('Min', '');
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'none', 'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0, 'opacity': 1});
-	$(this).css('opacity', 1);	
+	$(this).css('opacity', 1);
 });
 
 
+function onScroll(e, id = undefined){
+	var id = (typeof(id) == 'undefined') ? $(this).attr('id') : id.slice(1);
+	var d;
+	if (e.wheelDelta) d = e.wheelDelta;
+	if (e.originalEvent.detail) d = e.originalEvent.detail *-40;
+	if (e.originalEvent && e.originalEvent.wheelDelta) d = e.originalEvent.wheelDelta;
+	eval(id+'.scroll(d)')
+}
 
 //desktop.canMove();
 minify.secondPlane = [];

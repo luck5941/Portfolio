@@ -27,25 +27,25 @@ var mainR = 10,
     openIcon = {
         "elem": [
         {"name": 'polygon', "points":"17,0.3 100.7,7.8 100.7,75.7 17,65.4 ", "fill": "#F7F7F8", "stroke": lineColor, "stroke-width":"", "stroke-miterlimit" :"10"},
-       
+
         {"name": 'polygon', "fill":"#1f140f", "stroke-width": "1", "points": "82.8,22.9 100.2,17.3 100.2,71.1 82.8,77.7 ", "stroke": "#1F140F", "stroke-miterlimit":"10"},
-               
+
         {"name": 'polygon', "stroke-width":"1", "points": "0.5,11.7 16.9,5.6 18,60 0.6,66.5 ", "fill": "#1F140F", "stroke": lineColor, "stroke-width": "0.6899", "stroke-miterlimit":"10"},
-       
+
         {"name": 'polygon', "points": "0.3,8.9 84,16.4 84,84.2 0.3,73.9 ", "fill": "#F7F7F8", "stroke": lineColor, "stroke-width":" 1", "stroke-miterlimit" :"10"},
-       
+
         {"name": "line", "stroke": lineColor, "stroke-width": "0.5", "x1": "86.8", "y1": "21.3", "x2": "86.8", "y2": "76.4", "stroke-miterlimit":"10"},
-       
+
         {"name": "line", "stroke": lineColor, "stroke-width": "0.5", "x1":"90.9", "y1": "19.9", "x2": "90.9", "y2": "75", "stroke-miterlimit":"10"},
-       
+
         {"name": "line", "stroke": lineColor, "stroke-width": "0.5", "x1": "94.8", "y1": "18.7", "x2": "94.8", "y2": "73.8", "stroke-miterlimit":"10"},
-       
+
         {"name": "line", "stroke": lineColor, "stroke-width": "0.5", "x1" :"98.3", "y1": "17.6", "x2": "98.3", "y2": "72.7", "stroke-miterlimit":"10"},
-       
+
         {"name": 'polygon', "stroke-width": "1", "points": "32,25.9 31.6,37.2 50.7,39.3 51.1,27.6", "fill":"#F7F7F8", "stroke": lineColor, "stroke-width": "0.6899", "stroke-miterlimit":"10"},
-       
+
         {"name": 'path', "stroke-width": "1", "d": "M30.3,52.6c0,0-1.7,0.5,0.4,1.1c2.1,0.6,16.9,2.1,18.4,1.6c1.5-0.5,1.9-0.8,1.9-0.8s2-0.3,2.3,0.5    c0.1,0.2-0.1,2-0.3,4.1c0,0-1.1,1.8-5.7,1.2S27,59,26.6,58s-0.6-5.1,0-5.2l1.6-0.4L30.3,52.6z", "fill":"#F7F7F8", "stroke": lineColor, "stroke-width": "0.6899", "stroke-miterlimit":"10", "stroke-linejoin":"round"}
-        ]   
+        ]
 
     },
 	minifyIcon = { //caracteristicas del simbolo de minify
@@ -56,8 +56,8 @@ var mainR = 10,
 		"comon": {'fill':'none','stroke':lineColor,'stroke-width':4,'stroke-linecap': 'round','stroke-miterlimit':10, 'stroke-linejoin':'round'}
 
 	},
-	instagramIcon = '<path stroke="#000000" fill="none" stroke-width="2px" d="M20 0 L80 0 Q100 00 100 20 L100 80 Q100 100 80 100 L20 100 Q0 100 0 80 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#000" d="M20 0 L80 0 Q100 00 100 20 L100 50 L0 50 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#fff" d="M20 15 L80 15 Q90 15 90 25 L90 50 L10 50 L10 25 Q10 15 20 15 Z"/><path stroke="none" fill="#000" d="M10 50 L10 80 Q10 90 20 90 L80 90 Q90 90 90 80 L90 50 L10 50"/><g stroke-width=2px><path stroke="#fff"d="M30,50 a20,20 0 1,0 40,0z"/><path stroke="#000" fill="none"d="M30,50 a-20,20 0 1,1 40,0z"/></g><circle cx="75" cy="27" r="5"/>'	
-	 
+	instagramIcon = '<path stroke="#000000" fill="none" stroke-width="2px" d="M20 0 L80 0 Q100 00 100 20 L100 80 Q100 100 80 100 L20 100 Q0 100 0 80 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#000" d="M20 0 L80 0 Q100 00 100 20 L100 50 L0 50 L0 20 Q0 0 20 0 Z"/><path stroke="none" fill="#fff" d="M20 15 L80 15 Q90 15 90 25 L90 50 L10 50 L10 25 Q10 15 20 15 Z"/><path stroke="none" fill="#000" d="M10 50 L10 80 Q10 90 20 90 L80 90 Q90 90 90 80 L90 50 L10 50"/><g stroke-width=2px><path stroke="#fff"d="M30,50 a20,20 0 1,0 40,0z"/><path stroke="#000" fill="none"d="M30,50 a-20,20 0 1,1 40,0z"/></g><circle cx="75" cy="27" r="5"/>'
+
 function toRadian(degree) {return n =  degree *  Math.PI/180;}
 
 function toDegree(radian) {return n =  radian *  180/Math.PI;}
@@ -71,14 +71,14 @@ function generateCirculos(json, cont=true, arrayName = '', family = undefined){
 		//log("d = d."+family)
 		eval("d = d."+family);
 		for (var i in d){
-			parametros = '';			
+			parametros = '';
 			for (var n in d[i]){
 				if (typeof(d[i][n])== 'object')
-					continue;				
+					continue;
 				parametros += d[i][n] +', ';
 			}
 			parametros = parametros.substring(0, parametros.length-2);
-			
+
 			if (json == 'circulo')
 				eval("window."+ i+" = new "+clase+"("+parametros+");");
 			else{
@@ -89,10 +89,10 @@ function generateCirculos(json, cont=true, arrayName = '', family = undefined){
 		}
 	}).done(function(){
 		if (!cont){
-			separate(array)		
+			separate(array)
 			return;
 		}
-		else 
+		else
 			generateCirculos('node', false, arrayName, family)
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + errorThrown);});
@@ -108,15 +108,15 @@ function generateSoon(json, cont=true, arrayName = '', family){
 		//log("d = d."+family)
 		eval("d = d."+family);
 		for (var i in d){
-			parametros = '';			
+			parametros = '';
 			if (typeof(d[i]) !== 'object') continue;
 			final = false;
 			for (var s in d[i]){
 				if (typeof(d[i][s]) == 'object') continue;
-				parametros += d[i][s] +', ';				
+				parametros += d[i][s] +', ';
 			}
 			parametros = parametros.substring(0, parametros.length-2);
-			
+
 			if (json == 'circulo')
 				eval("window."+ i+" = new "+clase+"("+parametros+");");
 			else{
@@ -128,7 +128,7 @@ function generateSoon(json, cont=true, arrayName = '', family){
 		}
 	}).done(function(){
 		if (!cont){
-			separate(array)		
+			separate(array)
 			return;
 		}
 		else if (final)
@@ -174,7 +174,7 @@ function generateFill(id){
 		}
 		parametros = parametros.substring(0, parametros.length-2);
 		eval(name + ' = new FILL('+parametros+');');
-	});	
+	});
 }
 
 
@@ -206,6 +206,3 @@ menu.css('display', 'none');
 minify.jqr.css('display', 'none');
 minify.iconJqr.css('display', 'none');
 $('body').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
-
-
-

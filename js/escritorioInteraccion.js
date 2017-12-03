@@ -19,7 +19,7 @@ var moveFlag = false, //Sirve para dejar de recontrolar la posicion de un pointe
 	zindex = 0,
 	minifyFlag = true;
 //otras variables
-var cursor = 'url("media/img/system/',
+var cursor = 'url("media/system/',
 	cursorRight = cursor + 'cursorRight.png"), auto',
 	cursorLeft = cursor + 'cursorLeft.png"), auto',
 	cursorTop = cursor + 'cursorTop.png"), auto',

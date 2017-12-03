@@ -404,10 +404,33 @@ function FILL(contentForm, content, id){
 				d3.json('json/img.json', appendFiles)
 				break;
 			case 'image':
-				var txt = init + '<div class="myImg"><img src="'+this.content+'"></myImg>' + end;
+				var txt = init + '<div class="myImg"><img src="'+this.content+'"></div>' + end;
 				break;
 			case 'video':
-				var txt = `<div class="video"><video><source src="${this.content}"></myImg>${end}`
+				log(this.id)
+				var txt = `${init}
+						<div class="video">
+							<video id="${this.id.replace('Fill', '')}Video">
+								<source src="${this.content}">
+							</video>
+							</div>
+							<div class="controllers">
+								<span class="play">
+									<svg viewBox="0 0 100 100">
+										<g stroke="blue" fill="rgba(0,0,255, 0.3)">
+										<circle r=20 cx=50 cy=25 />
+										<path d="M40 13 L65 25 L40 37 Z" />
+										</g>
+									</svg>
+								</span>
+								<span class="pause">Pause</span>
+								<span class="fullScreen">fullScreen</span>
+							</div>
+						${end}
+						`;
+					// txt = init + '<div class="myImg"><img src="'+this.content+'"></div>' + end;
+					log(txt)
+				break;
 		}
 		$(txt).insertAfter($svg)
 		var top = randomMe(0, h-this.h/(w/h) );
@@ -418,7 +441,6 @@ function FILL(contentForm, content, id){
 			.animate({'left': left, 'top': top, 'width': this.w, 'height': this.h}, 1000);
 		$(id + ' .paper').animate({'height': this.h*0.8});
 		await sleep(1000);
-
 		this.cordX = parseInt(this.jqr.offset().left);
 		this.cordY = parseInt(this.jqr.offset().top);
 		this.w = parseInt(this.jqr.css('width'));
@@ -429,6 +451,9 @@ function FILL(contentForm, content, id){
 				break;
 			case 'word':
 				this.jqr.find('iframe').contents().find('body').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false).on('mousewheel DOMMouseScroll', function(e){onScroll(e, id)});
+				break;
+			case 'video':
+				appendVideo();
 				break;
 		}
 
@@ -554,6 +579,7 @@ function FILL(contentForm, content, id){
 	}
 
 	function appendFiles(error, graph) {
+		log(graph)
 		log(id);
 		eval('var obj = '+id+'Fill')
 		var mult = 16;
@@ -568,7 +594,7 @@ function FILL(contentForm, content, id){
 			.attr('class', id+'_pattern')
 			.append('image').attr('width', function(d){return d.r*4})
 			.attr('height', function(d){return d.r*4})
-			.attr('xlink\:href', function(d){return 'media/img/lucas/'+d.path});
+			.attr('xlink\:href', function(d){return 'media/lucas/img/'+d.path});
 
 		var circles = svg.selectAll('.'+id+'_file')
 			.data(graph[id])
@@ -583,20 +609,21 @@ function FILL(contentForm, content, id){
 				$('#'+d.name.split('.')[0]).attr('width', d.r*mult*2).attr('height', d.r*mult*2);
 				$('#'+d.name.split('.')[0]+ ' image').attr('width', d.r*mult*2).attr('height', d.r*mult*2);
 				d3.select(this).transition().duration(500).attr('r', function(d){return d.r*mult});
-			})
-			.on("mouseout", function(d){
+			}).on("mouseout", function(d){
 				$('#'+d.name.split('.')[0]).attr('width', d.r*4).attr('height', d.r*4);
 				$('#'+d.name.split('.')[0]+ ' image').attr('width', d.r*4).attr('height', d.r*4);
 				d3.select(this).transition().duration(500).attr('r', function(d){return d.r*2});
-			})
-			.on('click', function(d){
+			}).on('click', function(d){
 				try{
-					eval('var obj =' +d.name.split('.')[0] + 'Fill')
+					eval('var obj =' +d.name.split('.')[0] + 'Fill');
 				}
 				catch(err){
 					var error = err;
-					var frame = (id.search('media') === -1) ? "image" : "video"
-					eval(d.name.split('.')[0] + 'Fill = new FILL("'+frame+'", "media/img/lucas/'+d.path+'", "'+d.name.split('.')[0]+'")');
+					var frame = (id.search('media') === -1) ? "image" : "video";
+					var path = (frame !== "image") ? `media/lucas/video/${d.path.split('/')[1].split('.')[0]}.mp4` :  `media/lucas/img/${d.path}`;
+					// eval(d.name.split('.')[0] + 'Fill = new FILL("'+frame+'", "lucas/'+d.path+'", "'+d.name.split('.')[0]+'")');
+					// eval(d.name.split('.')[0] + 'Fill = new FILL("'+frame+'", "lucas/'+d.path+'", "'+d.name.split('.')[0]+'")');
+					eval(`${d.name.split('.')[0]}Fill = new FILL("${frame}","${path}" , "${d.name.split('.')[0]}")`);
 					zindex+=3;
 					eval(d.name.split('.')[0] +'Fill.jqr.css(\'z-index\', zindex)');
 				}
@@ -609,12 +636,21 @@ function FILL(contentForm, content, id){
 	}
 
 	function resizeImg(){
-		eval('var obj = '+id+'Fill')
-		var w = parseInt($('#'+id +'Fill .myImg').css('width')),
-			h = parseInt($('#'+id +'Fill .myImg').css('height'));
+		let selec = $(`#${id}Fill .myImg`);
+		var w = parseInt(selec.css('width')),
+			h = parseInt(select.css('height'));
 		if (w<h){
-			$('#'+id +'Fill .myImg').css({'height': (obj.h-10), 'width': (obj.h-10)*w/h})
+			select.css({'height': (obj.h-10), 'width': (obj.h-10)*w/h})
 		}
+	}
+
+	function appendVideo() {
+		if (!window.videos)
+			window.videos = {};
+		window.videos[id] = document.getElementById(`${id}Video`);
+		log(`${id}Video`);
+		log(videos[id])
+		videos[id].play();
 	}
 
 	if ($('#'+this.id).length === 0)

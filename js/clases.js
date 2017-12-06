@@ -391,7 +391,7 @@ function FILL(contentForm, content, id){
 	eval('this.parent = ' + parent);
 
 	this.create = async function(){
-		var init = "<div class=\"fill\" id= "+this.id+"><div class=\"header\">"+this.id.replace('Fill', '')+"<div class=\"buttom close\"></div><div class=\"buttom minify\"></div><div class=\"buttom maximizy\"></div></div><div class=\"main\"><div class=scroll></div>",
+		var init = "<div class=\"fill\" id= "+this.id+" style=\"overflow:hidden\"><div class=\"header\">"+this.id.replace('Fill', '')+"<div class=\"buttom close\"></div><div class=\"buttom minify\"></div><div class=\"buttom maximizy\"></div></div><div class=\"main\"><div class=scroll></div>",
 			end = "</div></div>",
 			id = '#' + this.id;
 		if (!this.contentForm) return;
@@ -415,21 +415,34 @@ function FILL(contentForm, content, id){
 							</video>
 							</div>
 							<div class="controllers">
+								<span class="volumen">
+									<svg viewBox="0 0 100 100" preserveAspectRatio="true">
+										<g stroke="blue" fill="rgba(0,0,255, 0.3)">
+											<circle r=5 cx=65 cy=25 fill="rgba(0,0,255)" />
+											<path d="M40 25 L65 25" />
+										</g>
+									</svg>
+								</span>
 								<span class="play">
 									<svg viewBox="0 0 100 100">
-										<g stroke="blue" fill="rgba(0,0,255, 0.3)">
-										<circle r=20 cx=50 cy=25 />
+										<g stroke="blue" fill="rgba(0,0,255, 0.3)" class="playPause">
+										<circle r=20 cx=50 cy=25 class=volumeCustom/>
 										<path d="M40 13 L65 25 L40 37 Z" />
 										</g>
 									</svg>
 								</span>
-								<span class="pause">Pause</span>
-								<span class="fullScreen">fullScreen</span>
+								<span class="fullScreen">
+									<svg viewBox="0 0 100 100" preserveAspectRatio="true">
+										<g stroke="blue" fill="rgba(0,0,255, 0.3)" transform="rotate(45 50 50) scale(0.75) translate(0 -15)">
+											<path d="M40 45 L40 30 L25 30 L50 5 L75 30 L60 30 L60 45 Z" />
+											<path d="M40 45 L40 30 L25 30 L50 5 L75 30 L60 30 L60 45 Z" transform="rotate(180, 50, 50)" />
+										</g>
+									</svg>
+								</span>
 							</div>
 						${end}
 						`;
 					// txt = init + '<div class="myImg"><img src="'+this.content+'"></div>' + end;
-					log(txt)
 				break;
 		}
 		$(txt).insertAfter($svg)
@@ -579,8 +592,6 @@ function FILL(contentForm, content, id){
 	}
 
 	function appendFiles(error, graph) {
-		log(graph)
-		log(id);
 		eval('var obj = '+id+'Fill')
 		var mult = 16;
 		$('#'+id+'Fill .main').css('background-color', 'darkblue')
@@ -647,14 +658,15 @@ function FILL(contentForm, content, id){
 	function appendVideo() {
 		if (!window.videos)
 			window.videos = {};
-		window.videos[id] = document.getElementById(`${id}Video`);
-		log(`${id}Video`);
-		log(videos[id])
-		videos[id].play();
+		window.videos[id] = {};
+		window.videos[id].obj = document.getElementById(`${id}Video`);
+		window.videos[id].state = false;
 	}
 
+	
 	if ($('#'+this.id).length === 0)
 		this.create();
 	else
 		log($('#'+this.id))
+
 }

@@ -328,7 +328,48 @@ $('body').on('mousedown', '.pointer', function(){
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'none', 'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0, 'opacity': 1});
 	$(this).css('opacity', 1);
+}).on('mousedown', '.play', playPaused).on('mousedown', '.fullScreen', fullScreen);
+
+
+function playPaused(e) {
+	if (e.which !== 1) return;
+	var id = $(e.currentTarget).parent().parent().parent().attr('id').replace('Fill', ''),
+		played = "<circle <circle r=20 cx=50 cy=25 /> /><path d=\"M40 13 L65 25 L40 37 Z\">",
+		paused = "<circle <circle r=20 cx=50 cy=25 /> /><path d=\"M40 13 L40 37 \" /><path d=\"M60 13 L60 37 \" />";
+	if (!videos[id].state) videos[id].obj.play();
+	else videos[id].obj.pause();
+	videos[id].state = !videos[id].state;
+	d3.select('.playPause').html(() => {return (videos[id].state) ? paused : played;});
+}
+
+function fullScreen(e) {	
+	if (e.which !== 1) return;
+	var id = $(e.currentTarget).parent().parent().parent().attr('id').replace('Fill', '');
+	if (videos[id].obj.requestFullscreen)
+        videos[id].obj.requestFullscreen();
+    else if (videos[id].obj.msRequestFullscreen)
+        videos[id].obj.msRequestFullscreen();
+    else if (videos[id].obj.mozRequestFullScreen)
+        videos[id].obj.mozRequestFullScreen();
+    else if (videos[id].obj.webkitRequestFullscreen)
+        videos[id].obj.webkitRequestFullscreen();
+    else
+        console.log("Fullscreen API is not supported");
+    videos[id].state = false;
+    playPaused(e)
+}
+
+
+/*.on('mousedown', 'volumeCustom', (e) => {
+	if (e.which !== 1) return;
+	var her = $(e.currentTarget); 
+	her.parent().on('mousemove', (e) => ){
+		her.attr({x = e.})
+	}
 });
+*/
+
+
 
 
 function onScroll(e, id = undefined){

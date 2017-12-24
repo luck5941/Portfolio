@@ -328,23 +328,27 @@ $('body').on('mousedown', '.pointer', function(){
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'none', 'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0, 'opacity': 1});
 	$(this).css('opacity', 1);
-}).on('mousedown', '.play', playPaused).on('mousedown', '.fullScreen', fullScreen);
+}).on('mousedown', '.play', playPaused)
+.on('mousedown', '.fullScreen', fullScreen)
+/*.on('mousedown', '.volumen', vol_dragStart)
+.on('mouseup', '.volumen', vol_dragend)*/;
 
 
 function playPaused(e) {
 	if (e.which !== 1) return;
-	var id = $(e.currentTarget).parent().parent().parent().attr('id').replace('Fill', ''),
-		played = "<circle <circle r=20 cx=50 cy=25 /> /><path d=\"M40 13 L65 25 L40 37 Z\">",
-		paused = "<circle <circle r=20 cx=50 cy=25 /> /><path d=\"M40 13 L40 37 \" /><path d=\"M60 13 L60 37 \" />";
+	var id = $(e.currentTarget).parent().parent().parent().parent().attr('id').replace('Fill', ''),
+		played = "<circle cx=\"50\" cy=\"6\" r=\"5.73\" class=\"st5\" /><path d=\"M48 3 L48 9 L53 6 Z\" class=\"st7\" />",
+		paused = "<circle cx=\"50\" cy=\"6\" r=\"5.73\" class=\"st5\" /><path d=\"M48 3 L48 9 \" class=\"st7\" /><path d=\"M53 3 L53 9 \" class=\"st7\" />";
 	if (!videos[id].state) videos[id].obj.play();
 	else videos[id].obj.pause();
 	videos[id].state = !videos[id].state;
-	d3.select('.playPause').html(() => {return (videos[id].state) ? paused : played;});
+	//d3.select('.playPause').html(() => {return (videos[id].state) ? paused : played;});
+	$('.play').html(()=> {return (videos[id].state) ? paused : played;})
 }
 
-function fullScreen(e) {	
+function fullScreen(e) {
 	if (e.which !== 1) return;
-	var id = $(e.currentTarget).parent().parent().parent().attr('id').replace('Fill', '');
+	var id = $(e.currentTarget).parent().parent().parent().parent().attr('id').replace('Fill', '');
 	if (videos[id].obj.requestFullscreen)
         videos[id].obj.requestFullscreen();
     else if (videos[id].obj.msRequestFullscreen)
@@ -359,15 +363,10 @@ function fullScreen(e) {
     playPaused(e)
 }
 
+function vol_dragStart(e) {
+	log(e);
+}
 
-/*.on('mousedown', 'volumeCustom', (e) => {
-	if (e.which !== 1) return;
-	var her = $(e.currentTarget); 
-	her.parent().on('mousemove', (e) => ){
-		her.attr({x = e.})
-	}
-});
-*/
 
 
 
@@ -383,3 +382,5 @@ function onScroll(e, id = undefined){
 
 //desktop.canMove();
 minify.secondPlane = [];
+
+

@@ -415,30 +415,24 @@ function FILL(contentForm, content, id){
 							</video>
 							</div>
 							<div class="controllers">
-								<span class="volumen">
-									<svg viewBox="0 0 100 100" preserveAspectRatio="true">
-										<g stroke="blue" fill="rgba(0,0,255, 0.3)">
-											<circle r=5 cx=65 cy=25 fill="rgba(0,0,255)" />
-											<path d="M40 25 L65 25" />
-										</g>
-									</svg>
-								</span>
-								<span class="play">
-									<svg viewBox="0 0 100 100">
-										<g stroke="blue" fill="rgba(0,0,255, 0.3)" class="playPause">
-										<circle r=20 cx=50 cy=25 class=volumeCustom/>
-										<path d="M40 13 L65 25 L40 37 Z" />
-										</g>
-									</svg>
-								</span>
-								<span class="fullScreen">
-									<svg viewBox="0 0 100 100" preserveAspectRatio="true">
-										<g stroke="blue" fill="rgba(0,0,255, 0.3)" transform="rotate(45 50 50) scale(0.75) translate(0 -15)">
-											<path d="M40 45 L40 30 L25 30 L50 5 L75 30 L60 30 L60 45 Z" />
-											<path d="M40 45 L40 30 L25 30 L50 5 L75 30 L60 30 L60 45 Z" transform="rotate(180, 50, 50)" />
-										</g>
-									</svg>
-								</span>
+								<svg viewBox="0 0 100 20">
+									<g>
+									<circle cx="25" cy="6" r="4.5" class="st6" />
+									<line x1="22" x2="27.5" y1="6" y2="6" class="st10" />
+									<circle cx="27" cy="6" r="0.5" class="st11 volumen" />
+									</g>
+									<g class="play">
+									<circle cx="50" cy="6" r="5.73" class="st5" />
+									<path d="M48 3 L48 9 L53 6 Z" class="st7" />
+									</g>
+									<g class="fullScreen">
+									<circle cx="75" cy="6" r="4.5" class="st6" />
+									<g transform="scale(0.75) translate(15, 5)" class="st7" style="stroke-width:0.5">
+										<path d="M84.6,3.5l-1.2-1.2c-0.2-0.2-0.2-0.7,0-0.9l0.8-0.8c0.2-0.2,0.7-0.2,0.9,0l1.2,1.2c0.2,0.2,0.2,0.7,0,0.9 l-0.8,0.8C85.3,3.7,84.9,3.7,84.6,3.5z"/>
+										<path d="M87.9-1.5l-2.5,0.7c-0.3,0.1-0.4,0.5-0.2,0.7l1.8,1.8c0.2,0.2,0.6,0.1,0.7-0.2l0.7-2.5 C88.5-1.3,88.2-1.6,87.9-1.5z"/>
+										<path d="M81.9,5.5l2.5-0.7c0.3-0.1,0.4-0.5,0.2-0.7l-1.8-1.8c-0.2-0.2-0.6-0.1-0.7,0.2l-0.7,2.5 C81.3,5.3,81.6,5.6,81.9,5.5z"/></g>
+									</g>
+								</svg>
 							</div>
 						${end}
 						`;

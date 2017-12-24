@@ -416,10 +416,10 @@ function FILL(contentForm, content, id){
 							</div>
 							<div class="controllers">
 								<svg viewBox="0 0 100 20">
-									<g>
+									<g class="volumen">
 									<circle cx="25" cy="6" r="4.5" class="st6" />
 									<line x1="22" x2="27.5" y1="6" y2="6" class="st10" />
-									<circle cx="27" cy="6" r="0.5" class="st11 volumen" />
+									<circle cx="27" cy="6" r="0.5" class="st11 vol" />
 									</g>
 									<g class="play">
 									<circle cx="50" cy="6" r="5.73" class="st5" />

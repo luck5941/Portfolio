@@ -330,8 +330,8 @@ $('body').on('mousedown', '.pointer', function(){
 	$(this).css('opacity', 1);
 }).on('mousedown', '.play', playPaused)
 .on('mousedown', '.fullScreen', fullScreen)
-/*.on('mousedown', '.volumen', vol_dragStart)
-.on('mouseup', '.volumen', vol_dragend)*/;
+.on('mousedown', '.volumen', vol_dragStart)
+.on('mouseup', '.volumen', vol_dragend);
 
 
 function playPaused(e) {
@@ -364,9 +364,19 @@ function fullScreen(e) {
 }
 
 function vol_dragStart(e) {
-	log(e);
-}
+	let dim = $(e.currentTarget).parent()[0].getBoundingClientRect(),
+		x = e.clientX - dim.left,
+		id = $(e.currentTarget).parent().parent().parent().parent().attr("id");
+	x = x*100/dim.width;
+	let vol = x-22;
+	vol = vol*100/5.5
+	videos[id].volume = vol;
+	$(e.currentTarget).find(".vol").attr("cx", ()=>x);
 
+}
+function vol_dragend(e){
+
+}
 
 
 

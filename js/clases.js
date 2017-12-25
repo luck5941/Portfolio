@@ -313,7 +313,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 		*(siendo u con el valor 0 y v con la pos actual)
 		*para obtener el ángulo que lo forman
 		*
-		*
 		*/
 		this.c.cx = this.c.jqr.attr('cx');
 		this.c.cy = this.c.jqr.attr('cy');
@@ -347,8 +346,6 @@ function NODE(circle, parent, classSelector = '', move = true){
 			var distancia_v = Math.pow(Math.pow(vX,2)+Math.pow(vY,2),0.5); //|v|
 			var cos = u_por_v/(distancia_v*distancia_u); //El coseno
 			alpha = Math.acos(cos);
-			//this.nPos = parseInt(toDegree(alpha));
-			//log(this.nPos);
 			this.posArr = posi;
 			var cuadrante = 0;
 			if (this.c.cx >= this.parent.cx){

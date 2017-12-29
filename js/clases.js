@@ -451,7 +451,7 @@ function FILL(contentForm, content, id){
 		this.h = parseInt(this.jqr.css('height'));
 		switch(this.contentForm){
 			case 'image':
-				resizeImg();
+				resizeImg(this);
 				break;
 			case 'word':
 				this.jqr.find('iframe').contents().find('body').attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false).on('mousewheel DOMMouseScroll', function(e){onScroll(e, id)});
@@ -505,7 +505,7 @@ function FILL(contentForm, content, id){
 					$('#' + id + 'Fill .paper').animate({'height': this.h*0.8}, 1000);
 					break;
 				case 'image':
-					resizeImg()
+					resizeImg(this)
 					break;
 			}
 	}
@@ -521,7 +521,7 @@ function FILL(contentForm, content, id){
 				$('#' + id + 'Fill .paper').css({'height': this.h*0.8}, 1000);
 				break;
 			case 'image':
-				resizeImg();
+				resizeImg(this);
 				break;
 		}
 	}
@@ -637,12 +637,12 @@ function FILL(contentForm, content, id){
 			});
 	}
 
-	function resizeImg(){
-		let selec = $(`#${id}Fill .myImg`);
-		var w = parseInt(selec.css('width')),
-			h = parseInt(select.css('height'));
-		if (w<h){
-			select.css({'height': (obj.h-10), 'width': (obj.h-10)*w/h})
+	function resizeImg(her = obj){		
+		var select = $(`#${id}Fill .myImg`),
+			w = parseInt(select.css('width')),
+			h = parseInt(select.css('height'));		
+		if (w<h){			
+			select.css({'height': (her.h-10), 'width': (her.h-10)*w/h})
 		}
 	}
 

@@ -39,26 +39,10 @@
 		"contenido": "'img.json'",
 		"id": "'tresD'"
 	},
- 
-	"arquitectura":{
+ 	"fotografia":{
 		"visualizador": "'nautilus'",
 		"contenido": "'img.json'",
-		"id": "'arquitectura'"
-	},
-	"otros":{
-		"visualizador": "'nautilus'",
-		"contenido": "'img.json'",
-		"id": "'otros'"
-	},
- 
-	"vidreoMetal":{
-		"visualizador": "'nautilus'",
-		"contenido": "'img.json'",
-		"id": "'vidreoMetal'"
-	},
-	"retratos": {
-		"visualizador": "'nautilus'",
-		"contenido": "'img.json'",
-		"id": "'retratos'"
+		"id": "'fotografia'"
 	}
+	
 }

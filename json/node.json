@@ -14,31 +14,7 @@
 			"fotografia" : {
 				"circle" : "fotografia",
 				"parent": "trabajos",
-				"classSelector": "'trabajos_selector'",
-
-				"arquitectura": {
-					"circle": "arquitectura",
-					"parent": "fotografia",
-					"classSelector": "'fotografia_selector'"
-				},
-
-				"otros": {
-					"circle": "otros",
-					"parent": "fotografia",
-					"classSelector": "'fotografia_selector'"
-				},
-
-				"retratos": {
-					"circle": "retratos",
-					"parent": "fotografia",
-					"classSelector": "'fotografia_selector'"
-				},
-
-				"vidreoMetal": {
-					"circle": "vidreoMetal",
-					"parent": "fotografia",
-					"classSelector": "'fotografia_selector'"
-				}
+				"classSelector": "'trabajos_selector'"
 			},
 
 			"media" : {

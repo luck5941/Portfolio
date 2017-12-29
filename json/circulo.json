@@ -25,47 +25,7 @@
 				"color": "'#a9ffe0'",
 				"id": "'fotografia'",
 				"txt":  "'Fotografía'",
-
-
-				"arquitectura": {
-					"cx": "50",
-					"cy": "50",
-					"r": 3,
-					"color": "'#a9ffe0'",
-					"id": "'arquitectura'",
-					"txt":  "'Arquitectura'",
-					"end": "true"
-				},
-
-				"otros": {
-					"cx": "50",
-					"cy": "50",
-					"r": 2,
-					"color": "'#a9ffe0'",
-					"id": "'otros'",
-					"txt":  "'Otros'",
-					"end": "true"
-				},
-
-				"retratos": {
-					"cx": "50",
-					"cy": "50",
-					"r": 5,
-					"color": "'#a9ffe0'",
-					"id": "'retratos'",
-					"txt":  "'Retratos'",
-					"end": "true"
-				},
-
-				"vidreoMetal": {
-					"cx": "50",
-					"cy": "50",
-					"r": 3,
-					"color": "'#a9ffe0'",
-					"id": "'vidreoMetal'",
-					"txt":  "'vidreo/metal'",
-					"end": "true"
-				}
+				"end": "true"
 			},			
 
 			"media": {

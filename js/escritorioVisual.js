@@ -2,8 +2,8 @@
 *Inicia el escritorio
 */
 
-var w = parseInt($('body').css('width')),
-	h = innerHeight,
+var w =  parseInt($('body').css('width')),
+	h = (innerHeight < w) ? innerHeight : w,
 	$svg = $('#contenedor'),
 	svg = d3.select("svg"),
 	menu = $('#menu'),
@@ -181,7 +181,6 @@ function generateFill(id){
 
 //Presentar el entorno de forma visual
 //$svg.attr({'height': h})
-
 
 /*Instanciar circulos*/
 var minify = new CIRCULO(98, 95, 2, "#f4f3d3", 'minify');

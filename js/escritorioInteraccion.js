@@ -37,7 +37,7 @@ var cursor = 'url("media/system/',
 * Variables relativas a control de eventos
 */
 
-var is_mobile = ((typeof window.orientation !== "undefined") || (navigator.userAgent.toLowerCase().indexOf('android') !== -1)),
+var is_mobile = ((typeof window.orientation !== "undefined") || (navigator.userAgent.search(/android|iphone|ipad|phone/i) !== -1)),
 	click_down = (is_mobile) ? 'touchstart' : 'mousedown',
 	click_up = (is_mobile) ? 'touchend' : 'mouseup',
 	click_move = (is_mobile) ? 'touchmove' : 'mousemove',
@@ -301,7 +301,7 @@ $('body').on(click_down, '.pointer', function(){
 	if (obj.big)
 		obj.reStyle({'width': obj.w_init, 'height': obj.h_init});
 
-	$('body').on(clic_move, function(e){
+	$('body').on(click_move, function(e){
 		if (stop) return;
 		var Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX : e.pageX,
 			Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY : e.pageY;

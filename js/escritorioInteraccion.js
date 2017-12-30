@@ -18,7 +18,9 @@ var moveFlag = false, //Sirve para dejar de recontrolar la posicion de un pointe
 	direction = '',
 	zindex = 0,
 	minifyFlag = true;
-//otras variables
+/*
+*otras variables
+*/
 var cursor = 'url("media/system/',
 	cursorRight = cursor + 'cursorRight.png"), auto',
 	cursorLeft = cursor + 'cursorLeft.png"), auto',
@@ -31,6 +33,19 @@ var cursor = 'url("media/system/',
 	closeHand = cursor + 'closeHand.png"), auto';
 	openHand = cursor + 'openHand.png"), auto';
 
+/*
+* Variables relativas a control de eventos
+*/
+
+var is_mobile = ((typeof window.orientation !== "undefined") || (navigator.userAgent.toLowerCase().indexOf('android') !== -1)),
+	click_down = (is_mobile) ? 'touchstart' : 'mousedown',
+	click_up = (is_mobile) ? 'touchend' : 'mouseup',
+	click_move = (is_mobile) ? 'touchmove' : 'mousemove',
+	toDel = '';
+
+
+
+//$('body').html(() => {let str =  is_mobile ? "es mobile " : "Es desktop"; str += `\nPor lo tanto  click_down vale: ${click_down}`; return str; })
 
 function externalCntrl(y, i) {
 	/*
@@ -99,39 +114,38 @@ function externalCntrl(y, i) {
 	}
 }
 
-/*
-*Desbloquear el menu
-*/
 
-setting.click(function(){
+
+setting.on(click_down, function(){
+	/*
+	*Desbloquear el menu. Esta desactivada de momento
+	*/
 	if (menu.css('display') == 'none'){
 		menu.css('display', 'block')
-		//$('#controlMenu').css({'height': '150px'})
 	}
 	else{
 		menu.css('display', 'none')
-		//$('#controlMenu').css({'height': '40px'})
 	}
 });
 
-$('body').on('mousedown', '.pointer', function(){
+$('body').on(click_down, '.pointer', function(){
 	her = $(this);
 	moveFlag = true;
 	i = $(this).index('.pointer');
 	var top = parseInt($(controlador[i]).offset().top),
 		bottom = top+ctrlHeight,
 		height = parseInt(her.css('height'))
-	menu.mousemove(function(event){
+	menu.on(click_move, function(e){
 		if (moveFlag){
-			y = event.pageY - top
+			var Ypos = (is_mobile)?  e.originalEvent.touches[0].pageY : e.pageY;
+			y = Ypos - top
 			y = (y+top<top) ? 0 : y
 			y = (y+top>bottom) ? bottom-top-height : y
 			her.css({'margin-top':y});
 			externalCntrl(y, i);
 		}
-	}).mouseup(function(){moveFlag=false;});
-
-}).on('mousedown', "[move='true']", function(e){
+	}).on(click_up, function(){moveFlag=false;});
+}).on(click_down, "[move='true']", function(e){
 	e.stopPropagation();
 	her = ($(this).attr('id').search('_txt') === -1) ? $(this) : $('#' + $(this).attr('id').replace('_txt', ''));
 	moveFlag = true;
@@ -140,10 +154,12 @@ $('body').on('mousedown', '.pointer', function(){
 		obj = {};
 	$('#controlMenu').css('z-index', -6);
 	her.css('cursor', closeHand);
-	$svg.mousemove(function(event){
+	$svg.on(click_move, function(e){
 		if (moveFlag){
-			x = event.pageX*100/w;
-			y = (event.pageY*100/h)/(w/h);
+			var xPos = (is_mobile) ? e.originalEvent.touches[0].pageX: e.pageX,
+				Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY: e.pageY;
+			x = xPos*100/w;
+			y = (Ypos*100/h)/(w/h);
 			obj = eval(her.attr('id'));
 			obj.move(x, y);
 			gravity = true;
@@ -152,7 +168,7 @@ $('body').on('mousedown', '.pointer', function(){
 			}
 
 		}
-	}).mouseup(async function(){
+	}).on(click_up, async function(){
 		if (!moveFlag) return;
 		her.css('cursor', 'inherit');
         moveFlag=false;
@@ -190,25 +206,27 @@ $('body').on('mousedown', '.pointer', function(){
 	open.gravityActive = false;
 	obj.entra = true;
 	obj.rotateNode();
-
-}).on('mousewheel DOMMouseScroll', '.fill', onScroll).on('mousemove', '.fill', function(e){
-	var id = $(this).attr('id');
+}).on('mousewheel DOMMouseScroll', '.fill', onScroll
+).on(click_move, '.fill', function(e){
+	var id = $(this).attr('id'),
+		Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX : e.pageX,
+		Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY : e.pageY;
 	direction = '';
 	eval('var obj = '+id);
 	desplazar = true;
-	if (e.pageX >= obj.cordX +obj.w-obj.border && e.pageY <=obj.cordY+obj.border){
+	if (e.Xpos >= obj.cordX +obj.w-obj.border && Ypos <=obj.cordY+obj.border){
 		direction = '';
 		desplazar = false;
 	}
-	else if (e.pageX >= obj.cordX +obj.w-obj.border){
+	else if (Xpos >= obj.cordX +obj.w-obj.border){
 		$(this).css('cursor', cursorRight);
 		direction = 'right';
 	}
-	else if (e.pageX <= obj.cordX +obj.border){
+	else if (Xpos <= obj.cordX +obj.border){
 		$(this).css('cursor', cursorLeft);
 		direction = 'left';
 	}
-	else if (e.pageY >=obj.cordY+obj.h-obj.border){
+	else if (Ypos >=obj.cordY+obj.h-obj.border){
 		$(this).css('cursor', cursorDown);
 		direction = 'down';
 	}
@@ -217,15 +235,17 @@ $('body').on('mousedown', '.pointer', function(){
 		desplazar = false;
 		direction = '';
 	}
-}).on('mousedown', '.fill', function(e){
+}).on(click_down, '.fill', function(e){
 		if (!desplazar) return;
 		var id = $(this).attr('id')
 		eval ('var obj = '+id)
 		var cords = [obj.cordX, obj.cordY, obj.w, obj.h];
 		var flag = true;
 
-		$('body').mousemove(function(e){
+		$('body').on(click_move, function(e){
 			if (!flag) return;
+			var Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX : e.pageX,
+				Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY : e.pageY;
 			switch (direction) {
 				case 'rightTop':
 					return;
@@ -233,18 +253,18 @@ $('body').on('mousedown', '.pointer', function(){
 				case 'leftTop':
 				case 'rightDown':
 				case 'leftDown':
-					cords = [(e.pageX-obj.cordX),(e.pageY-obj.cordY)];
+					cords = [(Xpos-obj.cordX),(Ypos-obj.cordY)];
 					break;
 				case 'right':
-					obj.reStyle({'width': e.pageX-obj.cordX})
-					log('{width: '+ obj.w+'+('+e.pageX+'-'+obj.cordX+'+'+obj.w+')}');
-					log({'width': obj.w+(e.pageX-obj.cordX+obj.w)});
+					obj.reStyle({'width': Xpos-obj.cordX})
+					log('{width: '+ obj.w+'+('+Xpos+'-'+obj.cordX+'+'+obj.w+')}');
+					log({'width': obj.w+(Xpos-obj.cordX+obj.w)});
 					break;
 				case 'left':
-					obj.reStyle({'left': e.pageX, 'width': (cords[2]+cords[0]-e.pageX)})
+					obj.reStyle({'left': Xpos, 'width': (cords[2]+cords[0]-Xpos)})
 					break;
 				case 'down':
-					obj.reStyle({'height': e.pageY-obj.cordY})
+					obj.reStyle({'height': Ypos-obj.cordY})
 					break;
 				case 'top':
 					cords = [e.pageY];
@@ -253,34 +273,39 @@ $('body').on('mousedown', '.pointer', function(){
 					return;
 					break;
 			}
-		}).mouseup(function(){flag = false;})
-
-}).mouseup(function(){flag = false;}).on('click', '.fill .close', function() {
+		}).on(click_up, function(){flag = false;})
+}).on(click_up, function(){flag = false;
+}).on(click_down, '.fill .close', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.close();
-}).on('click', '.fill .minify', function() {
+}).on(click_down, '.fill .minify', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.minify();
-}).on('click', '.header .maximizy', function() {
+}).on(click_down, '.header .maximizy', function() {
 	var id = $(this).parent().parent().attr('id');
 	eval('var obj = '+id + ';');
 	obj.maximizy();
-}).on('mousedown', '.fill .header', function(e){
+}).on(click_down, '.fill .header', function(e){
 	if(e.target !== e.currentTarget) return;
-	var id = $(this).parent().attr('id');
+
+	var id = $(this).parent().attr('id'),
+		Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX :e.pageX,
+		Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY :e.pageY;
 	eval('var obj = '+id + ';');
 	var stop = false;
-	var restX = (e.pageY-obj.cordY);
-	var restY = (e.pageX-obj.cordX);
+	var restX = (Ypos-obj.cordY);
+	var restY = (Xpos-obj.cordX);
 	$(this).css('cursor', closeHand);
 	if (obj.big)
 		obj.reStyle({'width': obj.w_init, 'height': obj.h_init});
 
-	$('body').mousemove(function(e){
+	$('body').on(clic_move, function(e){
 		if (stop) return;
-		if (e.pageY <= 20){
+		var Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX : e.pageX,
+			Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY : e.pageY;
+		if (Ypos <= 20){
 			if($('#screenBlue').css('display') !== 'none' && $('#screenBlue').css('display') !== 'block')
 				$('<div id="screenBlue" style = "height: '+h+'px"></div>').insertAfter($svg);
 			else
@@ -290,28 +315,29 @@ $('body').on('mousedown', '.pointer', function(){
 		}
 		else
 			$('#screenBlue').css({'width': '0px', 'height': '0px', 'display': 'none'})
-		obj.reStyle({'top': (e.pageY-restX), 'left': (e.pageX-restY)})
+		obj.reStyle({'top': (Ypos-restX), 'left': (Xpos-restY)})
 	})
-	.mouseup(function(e){stop = true; return;})
+	.on(click_up, function(e){stop = true; return;})
 
 
-	}).on('mouseup', '.fill .header', function(e){
+	}).on(click_up, '.fill .header', function(e){
 		if(e.target !== e.currentTarget) return;
 		stop = true;
+		var Xpos = (is_mobile) ? e.originalEvent.touches[0].pageX : e.pageX,
+			Ypos = (is_mobile) ? e.originalEvent.touches[0].pageY : e.pageY;
 		var id = $(this).parent().attr('id');
 		eval('var obj = '+id + ';');
 		$(this).css('cursor', openHand);
 		$('#screenBlue').css('display', 'none');
-		if (e.pageY <=20)
+		if (Ypos <=20)
 			obj.maximizy();
-}).on('click', '.fill', function(){
+}).on(click_down, '.fill', function(){
 	var id = $(this).attr('id')
 	eval('var obj ='+ id +';');
 	zindex++
 	obj.jqr.css('z-index', zindex)
-}).on('mouseenter', '#minify', function() {
-	minify.showAll();
-}).on('click', '.second', function() {
+}).on('mouseenter', '#minify', function() {minify.showAll();
+}).on(click_down, '.second', function() {
 	var id = $(this).attr('id').replace('Min', '');
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'blok', 'left': minify.cx*w/100, 'top': (minify.cy*h/100)/(h/w), 'width': 0, 'height': 0, 'opacity': 1})
@@ -328,10 +354,10 @@ $('body').on('mousedown', '.pointer', function(){
 	eval('var obj = ' +id);
 	obj.jqr.css({'display': 'none', 'left': minify.cx, 'top': minify.cy, 'width': 0, 'height': 0, 'opacity': 1});
 	$(this).css('opacity', 1);
-}).on('mousedown', '.play', playPaused)
-.on('mousedown', '.fullScreen', fullScreen)
-.on('mousedown', '.volumen', vol_dragStart)
-.on('mouseup', '.volumen', vol_dragend);
+}).on(click_down, '.play', playPaused)
+.on(click_down, '.fullScreen', fullScreen)
+.on(click_down, '.volumen', vol_dragStart)
+.on(click_up, '.volumen', vol_dragend);
 
 
 function playPaused(e) {

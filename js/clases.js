@@ -659,5 +659,4 @@ function FILL(contentForm, content, id){
 		this.create();
 	else
 		log($('#'+this.id))
-
 }

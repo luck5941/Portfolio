@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 img, svg {width: 100%;}
-body {margin: 0;padding: 0;overflow: hidden; background-color: #b55286; user-select: none;}
+body {margin: 0;padding: 0;overflow: hidden; background-color: #b55286; user-select: none; font-family: 'Roboto'}
 
 #controlMenu{
 	height: 150px;

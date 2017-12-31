@@ -1,4 +1,6 @@
-body {overflow: hidden;}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {overflow: hidden; font-family: 'Roboto';}
 .data {
 	display: block;
 	margin: 2% auto;

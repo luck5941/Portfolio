@@ -22,12 +22,6 @@
 				"parent": "trabajos",
 				"classSelector": "'trabajos_selector'"
 			},
-			"packaging" : {
-				"circle" : "packaging",
-				"parent": "trabajos",
-				"classSelector": "'trabajos_selector'"
-			},
-
 			"posters" : {
 				"circle" : "posters",
 				"parent": "trabajos",

@@ -22,5 +22,5 @@ for folder in folders:
 		print("{0} no es un dir ni un file".format(folder))
 
 
-imgs_json = open('json/img_new.json', 'w+')
+imgs_json = open('json/img.json', 'w+')
 imgs_json.write(json.dumps(imgs))
